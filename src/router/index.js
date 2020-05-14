@@ -3,10 +3,13 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import PaginaError404 from "../components/error/PaginaError404.vue";
-import PaginaLogin from "../components/login/PaginaLogin.vue";
-import PaginaInicio from "../components/inicio/PaginaInicio.vue"
-import Bienvenido from "../components/inicio/Bienvenido.vue"
+import PageError404 from "../components/error/PageError404.vue";
+import PageLogin from "../components/login/PageLogin.vue";
+import PageRegister from "../components/register/PageRegister.vue";
+import PageInicio from "../components/inicio/PageInicio.vue"
+import Welcome from "../components/inicio/Welcome.vue"
+import Tasks from "../components/task/Tasks.vue"
+import EditTask from "../components/task/EditTask.vue"
 import axios from "axios"
 const URL = "http://pointsale.boxcode.com.mx/"
 
@@ -14,22 +17,37 @@ const URL = "http://pointsale.boxcode.com.mx/"
 const routes = [
   {
     path: "*",
-    component: PaginaError404,
+    component: PageError404,
   },
   {
     path: "/login",
-    component: PaginaLogin,
+    component: PageLogin,
     name: "login",
   },
   {
+    path: "/register",
+    component: PageRegister,
+    name: "register",
+  },
+  {
     path: "/inicio",
-    component: PaginaInicio,
+    component: PageInicio,
     meta: { requiresAuth: true },
     children: [
       {
         path: '',
-        component: Bienvenido
-      },
+        component: Welcome,
+        children: [
+          {
+            path: '',
+            component: Tasks
+          },
+          {
+            path: 'editTask/:id',
+            component: EditTask
+          }
+        ]
+      }
     ]
   },
 ];
@@ -49,7 +67,6 @@ router.beforeEach((to, from, next) => {
         next()
       })
       .catch(() => {
-
         router.replace("/login");
       });
 

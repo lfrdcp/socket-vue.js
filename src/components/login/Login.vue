@@ -1,16 +1,23 @@
 <template>
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="4">
-      <v-card class="elevation-24">
-        <v-card-title class="justify-center">
-          <h1>Iniciar sesion</h1>
-        </v-card-title>
-        <v-img :src="require('../../assets/img/login.png')" />
+      <v-card class="elevation-24" shaped>
+        <v-toolbar color="primary" dark>
+          <v-toolbar-title>Iniciar sesion</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <HelpButton />
+        </v-toolbar>
+
+        <v-card-title class="justify-center"> </v-card-title>
+        <v-img
+          :src="require('../../assets/img/login.png')"
+          aspect-ratio="2"
+          contain
+        />
 
         <v-container>
-          <Alerta
+          <Alert
             color="warning"
-            type="error"
             icono="warning"
             :texto="message"
             v-if="message"
@@ -30,7 +37,7 @@
               :rules="emailRules"
               v-model="user.email"
             />
-            <v-spacer></v-spacer>
+
             <v-text-field
               id="password"
               label="Contraseña"
@@ -40,36 +47,45 @@
               outlined
               color="primary"
               required
+              :rules="passwordRules"
               v-model="user.password"
             />
           </v-form>
         </v-card-text>
 
         <v-card-actions>
-          <v-spacer />
           <v-btn
+            block
             color="primary"
             type="submit"
             @click="login"
             :disabled="!valid"
-            block
             >Iniciar sesion</v-btn
           >
         </v-card-actions>
-
-        <BotonDuda />
+        <v-card-actions>
+          <v-btn to="register" color="grey" block>Registarse</v-btn>
+        </v-card-actions>
+        <v-container>
+          <ProgressLinear v-bind:loading="loading" color="primary" />
+        </v-container>
       </v-card>
     </v-col>
   </v-row>
 </template>
 <script>
-import BotonDuda from "../login/BotonDuda";
-import Alerta from "../alerta/Alerta";
+import HelpButton from "../button/HelpButton";
+import Alert from "../alert/Alert";
+import ProgressLinear from "../progressLinear/ProgressLinear";
+import { rules } from "../rulesForm/RulesForm";
+import { mapState } from "vuex";
+
 export default {
   name: "Login",
   components: {
-    BotonDuda,
-    Alerta,
+    HelpButton,
+    Alert,
+    ProgressLinear,
   },
   data: () => ({
     valid: true,
@@ -77,11 +93,8 @@ export default {
       email: "",
       password: "",
     },
-
-    emailRules: [
-      (v) => !!v || "Necesita ingresar un correo",
-      (v) => /.+@.+\..+/.test(v) || "El correo debe ser valido",
-    ],
+    passwordRules: [rules.minimumEight],
+    emailRules: [rules.empty, rules.email],
   }),
   computed: {
     message: {
@@ -89,6 +102,7 @@ export default {
         return this.$store.state.currentUser.loginMessage;
       },
     },
+    ...mapState("currentUser", ["loading"]),
   },
 
   methods: {

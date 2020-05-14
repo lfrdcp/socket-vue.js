@@ -1,19 +1,20 @@
 import axios from "axios";
-
-const URL = "http://pointsale.boxcode.com.mx/"
-/* const URL = "http://127.0.0.1:8000/" */
+import router from "../../router/index";
+import { URL } from "../urlBackend"
 
 const state = {
   user: {},
   loginMessage: "",
+  snackbar: false,
+  loading: false
 };
 
 const getters = {};
 
 const actions = {
 
-  async getUser({ commit }) {
-    await axios
+  getUser({ commit }) {
+    axios
       .get(URL + "api/user/current")
       .then((response) => {
         commit("setUser", response.data);
@@ -21,6 +22,7 @@ const actions = {
   },
 
   loginUser({ commit }, user) {
+    commit("setLoading", true);
     axios
       .post(URL + "api/user/login", {
         email: user.email,
@@ -29,20 +31,25 @@ const actions = {
       .then((response) => {
         if (response.data.access_token) {
           localStorage.setItem("blog_token", response.data.access_token);
-          window.location.replace("/inicio");
+          router.push("/inicio")
+          commit("setSnackbar", true);
+          commit("setLoginMessage", "");
+          commit("setLoading", false);
         } else {
-          //se envie el error a la vista
           commit("setLoginMessage", response.data.message);
+          commit("setLoading", false);
         }
       })
       .catch((error) => {
         console.log(error);
+        commit("setLoading", false);
       });
   },
 
   logoutUser() {
     localStorage.removeItem("blog_token");
-    window.location.replace("/login");
+    router.push("/login")
+
   },
 };
 
@@ -50,9 +57,18 @@ const mutations = {
   setUser(state, data) {
     state.user = data;
   },
+
   setLoginMessage(state, data) {
     state.loginMessage = data;
   },
+
+  setSnackbar(state, data) {
+    state.snackbar = data;
+  },
+
+  setLoading(state, data) {
+    state.loading = data;
+  }
 };
 
 export default {

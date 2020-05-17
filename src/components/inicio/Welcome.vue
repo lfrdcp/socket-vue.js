@@ -3,23 +3,23 @@
     <v-card class="elevation-24" shaped color="primary" dark>
       <v-card-title>
         Tareas <v-spacer></v-spacer>
-        <v-icon color="blue">note </v-icon></v-card-title
-      >
+        <v-icon color="blue">note </v-icon>
+      </v-card-title>
     </v-card>
+
     <v-row cols="12" sm="8" md="4">
       <v-col>
         <v-card class="elevation-24" shaped
           ><v-app-bar>
             <v-toolbar-title>Todas las tareas</v-toolbar-title>
           </v-app-bar>
-
           <Calendar />
-
           <v-card-text>
             <h3>Son las {{ time }} del día {{ date }}</h3>
           </v-card-text>
         </v-card>
       </v-col>
+
       <v-col>
         <router-view />
       </v-col>

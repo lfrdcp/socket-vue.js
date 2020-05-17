@@ -10,6 +10,8 @@ import PageInicio from "../components/inicio/PageInicio.vue"
 import Welcome from "../components/inicio/Welcome.vue"
 import Tasks from "../components/task/Tasks.vue"
 import EditTask from "../components/task/EditTask.vue"
+import Settings from "../components/settings/Settings.vue"
+
 import axios from "axios"
 const URL = "http://pointsale.boxcode.com.mx/"
 
@@ -35,18 +37,22 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       {
-        path: '',
+        path: "",
         component: Welcome,
         children: [
           {
-            path: '',
+            path: "",
             component: Tasks
           },
           {
-            path: 'editTask/:id',
+            path: "editTask/:id",
             component: EditTask
           }
         ]
+      },
+      {
+        path: "/settings",
+        component: Settings,
       }
     ]
   },

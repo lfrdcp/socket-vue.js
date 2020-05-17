@@ -46,14 +46,13 @@
           color="primary"
           :events="events"
           :event-color="getEventColor"
-          :now="today"
           :type="type"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
           @change="updateRange"
           locale="es"
-        ></v-calendar>
+        />
         <v-menu
           v-model="selectedOpen"
           :close-on-content-click="false"

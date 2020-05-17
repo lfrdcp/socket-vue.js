@@ -89,12 +89,12 @@ export default {
   },
   data: () => ({
     valid: true,
+    passwordRules: [rules.minimumEight],
+    emailRules: [rules.empty, rules.email],
     user: {
       email: "",
       password: "",
     },
-    passwordRules: [rules.minimumEight],
-    emailRules: [rules.empty, rules.email],
   }),
   computed: {
     message: {
@@ -104,7 +104,6 @@ export default {
     },
     ...mapState("currentUser", ["loading"]),
   },
-
   methods: {
     login() {
       this.$store.dispatch("currentUser/loginUser", this.user);

@@ -1,10 +1,16 @@
 <template>
   <v-card class="elevation-24">
     <v-app-bar app clipped-left dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" mensaje-tour="4" />
       <v-toolbar-title>Punto de venta boxcode</v-toolbar-title>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" app clipped class="elevation-24">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      clipped
+      class="elevation-24"
+      mensaje-tour="1"
+    >
       <v-list dense>
         <v-list-item>
           <v-list-item-action>
@@ -20,28 +26,20 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item to="/inicio" link>
-          <v-list-item-action>
-            <v-icon>home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Inicio</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <ListItem link="/inicio" icon="home" text="Inicio" />
+        <ListItem link="/inventory" icon="storefront" text="Inventario" />
 
-        <v-list-item to="/inventory" link>
-          <v-list-item-action>
-            <v-icon>storefront</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Inventario</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <ListItem
+          link="/settings"
+          icon="settings"
+          text="Configuración"
+          mensaje-tour="2"
+        />
       </v-list>
 
       <template v-slot:append>
         <div class="pa-2" @click="logout">
-          <v-btn block dark>
+          <v-btn block dark mensaje-tour="3">
             <v-icon>power_settings_new </v-icon>
             <v-spacer></v-spacer>
             Cerrar sesion
@@ -54,6 +52,7 @@
 
 <script>
 import { mapState } from "vuex";
+import ListItem from "./ListItem";
 export default {
   name: "Dashboard",
   data() {
@@ -61,7 +60,9 @@ export default {
       drawer: null,
     };
   },
-
+  components: {
+    ListItem,
+  },
   computed: {
     ...mapState("currentUser", ["user"]),
   },

@@ -1,8 +1,10 @@
 <template>
   <v-app
     style="
-    background: linear-gradient(#1e96fc  ,#ffffff );
-  "
+      background: linear-gradient(#1e96fc  ,#ffffff );
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    "
   >
     <v-content>
       <v-container class="fill-height" fluid>

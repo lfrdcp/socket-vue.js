@@ -5,6 +5,7 @@
       <v-toolbar-title>Punto de venta boxcode</v-toolbar-title>
     </v-app-bar>
     <v-navigation-drawer
+      dark
       v-model="drawer"
       app
       clipped
@@ -17,24 +18,39 @@
             <v-avatar size="36px">
               <img
                 alt="Avatar"
-                src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
               />
             </v-avatar>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Perfil: {{ user.name }}</v-list-item-title>
+            <v-list-item-title>{{ user.name }}</v-list-item-title>
+            <v-list-item-subtitle v-if="user.type === 0">
+              Administrador</v-list-item-subtitle
+            >
+            <v-list-item-subtitle v-else-if="user.type === 1">
+              Empleado</v-list-item-subtitle
+            >
           </v-list-item-content>
         </v-list-item>
 
-        <ListItem link="/inicio" icon="home" text="Inicio" />
-        <ListItem link="/inventory" icon="storefront" text="Inventario" />
+        <ListItemSingle link="/inicio" icon="home" text="Inicio" />
+        <ListItemSingle link="/inventory" icon="store" text="Inventario" />
 
-        <ListItem
-          link="/settings"
-          icon="settings"
-          text="Configuración"
-          mensaje-tour="2"
-        />
+        <v-list-group no-action prepend-icon="settings" color="white">
+          <template v-slot:activator>
+            <v-list-item-content mensaje-tour="2">
+              <v-list-item-title>Configuración</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <ListItemGroup link="/personal" icon="fingerprint" text="Personal" />
+
+          <ListItemGroup
+            link="/storeEmployee"
+            icon="assignment_ind"
+            text="Tienda/Empleado"
+          />
+        </v-list-group>
       </v-list>
 
       <template v-slot:append>
@@ -52,16 +68,22 @@
 
 <script>
 import { mapState } from "vuex";
-import ListItem from "./ListItem";
+import ListItemSingle from "./ListItemSingle";
+import ListItemGroup from "./ListItemGroup";
 export default {
   name: "Dashboard",
   data() {
     return {
       drawer: null,
+      admins: [
+        ["Management", "people_outline"],
+        ["Settings", "settings"],
+      ],
     };
   },
   components: {
-    ListItem,
+    ListItemSingle,
+    ListItemGroup,
   },
   computed: {
     ...mapState("currentUser", ["user"]),

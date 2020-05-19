@@ -31,6 +31,7 @@
 </template>
 <script>
 export default {
+  name: "HelpButton",
   data: () => ({
     dialog: false,
   }),

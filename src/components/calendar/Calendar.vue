@@ -91,13 +91,13 @@
 <script>
 export default {
   data: () => ({
-    focus: "",
-    type: "month",
+    focus: '',
+    type: 'month',
     typeToLabel: {
-      month: "MES",
-      week: "SEMANA",
-      day: "POR DÍA",
-      "4day": "4 DÍAS",
+      month: 'MES',
+      week: 'SEMANA',
+      day: 'POR DÍA',
+      '4day': '4 DÍAS',
     },
     start: null,
     end: null,
@@ -106,58 +106,61 @@ export default {
     selectedOpen: false,
     events: [],
     colors: [
-      "blue",
-      "indigo",
-      "deep-purple",
-      "cyan",
-      "green",
-      "orange",
-      "grey darken-1",
+      'blue',
+      'indigo',
+      'deep-purple',
+      'cyan',
+      'green',
+      'orange',
+      'grey darken-1',
     ],
     names: [
-      "Meeting",
-      "Holiday",
-      "PTO",
-      "Travel",
-      "Event",
-      "Birthday",
-      "Conference",
-      "Party",
+      'Meeting',
+      'Holiday',
+      'PTO',
+      'Travel',
+      'Event',
+      'Birthday',
+      'Conference',
+      'Party',
     ],
   }),
   computed: {
+    modifiedDate: function() {
+      return Math.trunc(Date.parse(this.date) / 1000);
+    },
     title() {
       const { start, end } = this;
       if (!start || !end) {
-        return "";
+        return '';
       }
 
       const startMonth = this.monthFormatter(start);
       const endMonth = this.monthFormatter(end);
-      const suffixMonth = startMonth === endMonth ? "" : endMonth;
+      const suffixMonth = startMonth === endMonth ? '' : endMonth;
 
       const startYear = start.year;
       const endYear = end.year;
-      const suffixYear = startYear === endYear ? "" : endYear;
+      const suffixYear = startYear === endYear ? '' : endYear;
 
       const startDay = start.day + this.nth(start.day);
       const endDay = end.day + this.nth(end.day);
 
       switch (this.type) {
-        case "month":
+        case 'month':
           return `${startMonth} ${startYear}`;
-        case "week":
-        case "4day":
+        case 'week':
+        case '4day':
           return `${startMonth} ${startDay} ${startYear} - ${suffixMonth} ${endDay} ${suffixYear}`;
-        case "day":
+        case 'day':
           return `${startMonth} ${startDay} ${startYear}`;
       }
-      return "";
+      return '';
     },
     monthFormatter() {
       return this.$refs.calendar.getFormatter({
-        timeZone: "UTC",
-        month: "long",
+        timeZone: 'UTC',
+        month: 'long',
       });
     },
   },
@@ -167,7 +170,7 @@ export default {
   methods: {
     viewDay({ date }) {
       this.focus = date;
-      this.type = "day";
+      this.type = 'day';
     },
     getEventColor(event) {
       return event.color;
@@ -225,7 +228,7 @@ export default {
       this.events = events;
     },
     nth(d) {
-      return d > 3 && d < 21 ? " -" : " -";
+      return d > 3 && d < 21 ? ' -' : ' -';
     },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a;

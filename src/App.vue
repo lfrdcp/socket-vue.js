@@ -16,22 +16,20 @@
 </template>
 
 <script>
-import axios from "axios";
-import Footer from "./components/footer/Footer";
+import axios from 'axios';
+import Footer from './components/footer/Footer';
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Footer,
   },
-  data() {
-    return {
-      token: null,
-      drawer: null,
-    };
-  },
+  data: () => ({
+    token: null,
+    drawer: null,
+  }),
   computed: {
     footer() {
-      if (this.$route.path === "/login" || this.$route.path === "/register") {
+      if (this.$route.path === '/login' || this.$route.path === '/register') {
         return true;
       } else {
         return false;
@@ -39,17 +37,18 @@ export default {
     },
   },
   created() {
-    if (Object.prototype.hasOwnProperty.call(localStorage, "blog_token")) {
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer " + localStorage.getItem("blog_token");
+    if (Object.prototype.hasOwnProperty.call(localStorage, 'blog_token')) {
+      axios.defaults.headers.common['Authorization'] =
+        'Bearer ' + localStorage.getItem('blog_token');
     }
   },
 };
 </script>
+
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Abel&family=Manrope&family=Montserrat:ital,wght@0,100;0,200;1,200&family=Permanent+Marker&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Manrope&family=Montserrat:ital,wght@0,100;0,200;1,200&family=Permanent+Marker&display=swap');
 
 .v-application {
-  font-family: "Abel", sans-serif !important;
+  font-family: 'Abel', sans-serif !important;
 }
 </style>

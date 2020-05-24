@@ -67,31 +67,30 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import ListItemSingle from "./ListItemSingle";
-import ListItemGroup from "./ListItemGroup";
+import { mapState } from 'vuex';
+import ListItemSingle from './ListItemSingle';
+import ListItemGroup from './ListItemGroup';
+
 export default {
-  name: "Dashboard",
-  data() {
-    return {
-      drawer: null,
-      admins: [
-        ["Management", "people_outline"],
-        ["Settings", "settings"],
-      ],
-    };
-  },
+  name: 'Dashboard',
+  data: () => ({
+    drawer: null,
+    admins: [
+      ['Management', 'people_outline'],
+      ['Settings', 'settings'],
+    ],
+  }),
   components: {
     ListItemSingle,
     ListItemGroup,
   },
   computed: {
-    ...mapState("currentUser", ["user"]),
+    ...mapState('currentUser', ['user']),
   },
 
   methods: {
     logout() {
-      this.$store.dispatch("currentUser/logoutUser");
+      this.$store.dispatch('currentUser/logoutUser');
     },
   },
 };

@@ -28,19 +28,19 @@
   </v-container>
 </template>
 <script>
-import { mapState } from "vuex";
-import Calendar from "../calendar/Calendar";
+import { mapState } from 'vuex';
+import Calendar from '../calendar/Calendar';
 export default {
-  name: "Welcome",
+  name: 'Welcome',
   data: () => ({
-    time: "",
-    date: "",
+    time: '',
+    date: '',
   }),
   components: {
     Calendar,
   },
   computed: {
-    ...mapState("currentUser", ["user"]),
+    ...mapState('currentUser', ['user']),
   },
   created() {
     setInterval(this.getNow, 1000);
@@ -50,12 +50,12 @@ export default {
       const today = new Date();
       const date =
         today.getFullYear() +
-        "-" +
+        '-' +
         (today.getMonth() + 1) +
-        "-" +
+        '-' +
         today.getDate();
       const time =
-        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
       this.time = time;
       this.date = date;
     },

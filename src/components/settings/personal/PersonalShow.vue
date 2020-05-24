@@ -13,7 +13,18 @@
           ></v-img>
         </v-avatar>
       </v-col>
-
+      <v-chip
+        class="ma-2"
+        close
+        color="green"
+        text-color="white"
+        close-icon="mdi-delete"
+      >
+        <v-avatar left>
+          <v-icon>check</v-icon>
+        </v-avatar>
+        Cuenta activada
+      </v-chip>
       <v-simple-table>
         <template>
           <tbody>
@@ -31,8 +42,8 @@
               <td class="text-left">{{ user.email }}</td>
             </tr>
             <tr>
-              <th class="text-right">Estado de la cuenta</th>
-              <td class="text-left">Cuenta activada</td>
+              <th class="text-right">Proxima fecha de pago</th>
+              <td class="text-left">06/06/2020</td>
             </tr>
           </tbody>
         </template>
@@ -42,11 +53,11 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   computed: {
-    ...mapState("currentUser", ["user"]),
+    ...mapState('currentUser', ['user']),
   },
 };
 </script>

@@ -15,6 +15,7 @@ import Tasks from "../components/task/Tasks.vue"
 import EditTask from "../components/task/EditTask.vue"
 
 
+
 import axios from "axios"
 const URL = "http://pointsale.boxcode.com.mx/"
 

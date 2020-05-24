@@ -2,7 +2,7 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="4">
       <v-card class="elevation-24" shaped>
-        <v-toolbar color="primary" dark>
+        <v-toolbar dark>
           <v-toolbar-title>Iniciar sesion</v-toolbar-title>
           <v-spacer></v-spacer>
           <HelpButton />
@@ -19,8 +19,8 @@
           <Alert
             color="warning"
             icono="warning"
-            :texto="message"
-            v-if="message"
+            :texto="loginMessage"
+            v-if="loginMessage"
           />
         </v-container>
 
@@ -67,21 +67,21 @@
           <v-btn to="register" color="grey" block>Registarse</v-btn>
         </v-card-actions>
         <v-container>
-          <ProgressLinear v-bind:loading="loading" color="primary" />
+          <ProgressLinear v-bind:loading="loginLoading" color="primary" />
         </v-container>
       </v-card>
     </v-col>
   </v-row>
 </template>
 <script>
-import HelpButton from "../button/HelpButton";
-import Alert from "../alert/Alert";
-import ProgressLinear from "../progressLinear/ProgressLinear";
-import { rules } from "../rulesForm/RulesForm";
-import { mapState } from "vuex";
+import HelpButton from '../button/HelpButton';
+import Alert from '../alert/Alert';
+import ProgressLinear from '../progressLinear/ProgressLinear';
+import { rules } from '../rulesForm/RulesForm';
+import { mapState } from 'vuex';
 
 export default {
-  name: "Login",
+  name: 'Login',
   components: {
     HelpButton,
     Alert,
@@ -92,21 +92,17 @@ export default {
     passwordRules: [rules.minimumEight],
     emailRules: [rules.empty, rules.email],
     user: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   }),
   computed: {
-    message: {
-      get() {
-        return this.$store.state.currentUser.loginMessage;
-      },
-    },
-    ...mapState("currentUser", ["loading"]),
+    ...mapState('currentUser', ['loginMessage']),
+    ...mapState('currentUser', ['loginLoading']),
   },
   methods: {
     login() {
-      this.$store.dispatch("currentUser/loginUser", this.user);
+      this.$store.dispatch('currentUser/loginUser', this.user);
     },
   },
 };

@@ -2,7 +2,7 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="8" md="4">
       <v-card class="elevation-24" shaped>
-        <v-toolbar color="primary" dark>
+        <v-toolbar dark>
           <v-toolbar-title>Registarse</v-toolbar-title>
           <v-spacer></v-spacer>
           <HelpButton />
@@ -20,8 +20,8 @@
           <Alert
             color="warning"
             icono="warning"
-            :texto="message"
-            v-if="message"
+            :texto="registerMessage"
+            v-if="registerMessage"
           />
         </v-container>
 
@@ -115,21 +115,21 @@
           <v-btn to="login" color="primary" block>Iniciar sesion</v-btn>
         </v-card-actions>
         <v-container>
-          <ProgressLinear v-bind:loading="loading" color="primary" />
+          <ProgressLinear v-bind:loading="registerLoading" color="primary" />
         </v-container>
       </v-card>
     </v-col>
   </v-row>
 </template>
 <script>
-import HelpButton from "../button/HelpButton";
-import Alert from "../alert/Alert";
-import ProgressLinear from "../progressLinear/ProgressLinear";
-import { rules } from "../../components/rulesForm/RulesForm";
-import { mapState } from "vuex";
+import HelpButton from '../button/HelpButton';
+import Alert from '../alert/Alert';
+import ProgressLinear from '../progressLinear/ProgressLinear';
+import { rules } from '../../components/rulesForm/RulesForm';
+import { mapState } from 'vuex';
 
 export default {
-  name: "Register",
+  name: 'Register',
   components: {
     HelpButton,
     Alert,
@@ -138,12 +138,12 @@ export default {
   data: () => ({
     valid: true,
     user: {
-      name: "",
-      lastName: "",
-      verifierCode: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      name: '',
+      lastName: '',
+      verifierCode: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
 
     passwordRules: [rules.empty, rules.minimumEight],
@@ -155,20 +155,15 @@ export default {
     passwordMatch() {
       return (
         this.user.password === this.user.confirmPassword ||
-        "La contraseña no coincide"
+        'La contraseña no coincide'
       );
     },
-    message: {
-      get() {
-        return this.$store.state.registerUser.registerMessage;
-      },
-    },
-    ...mapState("registerUser", ["loading"]),
+    ...mapState('registerUser', ['registerLoading', 'registerMessage']),
   },
 
   methods: {
     register() {
-      this.$store.dispatch("registerUser/registerUser", this.user);
+      this.$store.dispatch('registerUser/registerUser', this.user);
     },
   },
 };

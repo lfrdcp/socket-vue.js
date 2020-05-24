@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-snackbar top right :value="snackbar" :color="color" :timeout="timeout">
+    <v-snackbar right :value="snackbar" :color="color" :timeout="timeout">
       {{ text }}
     </v-snackbar>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "Snackbar",
+  name: 'Snackbar',
   data: () => ({
     timeout: 8000,
   }),

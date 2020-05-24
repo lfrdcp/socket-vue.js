@@ -55,7 +55,7 @@
 <script>
 import { mapState } from 'vuex';
 export default {
-  name: 'Dashboard',
+  name: 'PersonalShow',
   computed: {
     ...mapState('currentUser', ['user']),
   },

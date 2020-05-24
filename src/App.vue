@@ -6,11 +6,10 @@
       background-attachment: fixed;
     "
   >
-    <v-content>
-      <v-container class="fill-height" fluid>
-        <router-view> </router-view>
-      </v-container>
-    </v-content>
+    <v-container class="fill-height" fluid>
+      <router-view />
+    </v-container>
+
     <Footer v-show="footer" />
   </v-app>
 </template>

@@ -1,89 +1,44 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-
+import Vue from 'vue';
+import axios from 'axios';
+import VueRouter from 'vue-router';
 Vue.use(VueRouter);
+const URL = 'http://pointsale.boxcode.com.mx/';
 
-import PageError404 from "../components/error/PageError404.vue";
-import PageLogin from "../components/login/PageLogin.vue";
-import PageRegister from "../components/register/PageRegister.vue";
-import PageInicio from "../components/inicio/PageInicio.vue"
-import PagePersonal from "../components/settings/PagePersonal.vue"
-import PageStoreEmployee from "../components/settings/PageStoreEmployee.vue"
+import PageInicio from '../components/inicio/PageInicio.vue';
 
-import Welcome from "../components/inicio/Welcome.vue"
-import Tasks from "../components/task/Tasks.vue"
-import EditTask from "../components/task/EditTask.vue"
-
-
-
-import axios from "axios"
-const URL = "http://pointsale.boxcode.com.mx/"
-
+import sign from './modules/sign';
+import welcome from './modules/welcome';
+import profile from './modules/profile';
+import storeEmployee from './modules/storeEmployee';
 
 const routes = [
+  ...sign,
   {
-    path: "*",
-    component: PageError404,
-  },
-  {
-    path: "/login",
-    component: PageLogin,
-    name: "login",
-  },
-  {
-    path: "/register",
-    component: PageRegister,
-    name: "register",
-  },
-  {
-    path: "/inicio",
+    path: '/inicio',
     component: PageInicio,
     meta: { requiresAuth: true },
-    children: [
-      {
-        path: "",
-        component: Welcome,
-        children: [
-          {
-            path: "",
-            component: Tasks
-          },
-          {
-            path: "editTask/:id",
-            component: EditTask
-          }
-        ]
-      },
-      {
-        path: "/personal",
-        component: PagePersonal,
-      },
-      {
-        path: "/storeEmployee",
-        component: PageStoreEmployee,
-      }
-    ]
+    children: [...welcome, ...profile, ...storeEmployee],
   },
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: routes,
 });
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + localStorage.getItem("blog_token");
-    axios.get(URL + "api/user/vtoken")
+    axios.defaults.headers.common['Authorization'] =
+      'Bearer ' + localStorage.getItem('blog_token');
+    axios
+      .get(URL + 'api/user/vtoken')
       .then(() => {
-        next()
+        next();
       })
       .catch(() => {
-        router.replace("/login");
+        router.replace('/login');
       });
-
   } else {
     next();
   }

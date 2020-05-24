@@ -43,7 +43,7 @@
             </v-list-item-content>
           </template>
 
-          <ListItemGroup link="/personal" icon="fingerprint" text="Personal" />
+          <ListItemGroup link="/profile" icon="fingerprint" text="Perfil" />
 
           <ListItemGroup
             link="/storeEmployee"

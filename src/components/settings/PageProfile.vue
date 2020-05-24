@@ -10,25 +10,25 @@
 
     <v-row cols="12" sm="8" md="4">
       <v-col>
-        <PersonalShow />
+        <ProfileRead />
       </v-col>
 
       <v-col>
-        <PersonalEdit />
+        <ProfileUpdate />
       </v-col>
     </v-row>
   </v-container>
 </template>
 <script>
-import { mapState } from "vuex";
-import PersonalShow from "./personal/PersonalShow";
-import PersonalEdit from "./personal/PersonalEdit";
+import { mapState } from 'vuex';
+import ProfileRead from './profile/ProfileRead';
+import ProfileUpdate from './profile/ProfileUpdate';
 export default {
-  name: "PageSettings",
+  name: 'PageSettings',
   data: () => ({}),
-  components: { PersonalShow, PersonalEdit },
+  components: { ProfileRead, ProfileUpdate },
   computed: {
-    ...mapState("currentUser", ["user"]),
+    ...mapState('currentUser', ['user']),
   },
   created() {},
   methods: {},

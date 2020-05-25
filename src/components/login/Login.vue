@@ -5,26 +5,25 @@
         <v-toolbar dark>
           <v-toolbar-title>Iniciar sesion</v-toolbar-title>
           <v-spacer></v-spacer>
-          <HelpButton />
+          <DialogHelpSign />
         </v-toolbar>
 
-        <v-card-title class="justify-center"> </v-card-title>
-        <v-img
-          :src="require('../../assets/img/login.png')"
-          aspect-ratio="2"
-          contain
-        />
-
-        <v-container>
-          <Alert
-            color="warning"
-            icono="warning"
-            :texto="loginMessage"
-            v-if="loginMessage"
-          />
-        </v-container>
-
         <v-card-text>
+          <v-container>
+            <Alert
+              color="warning"
+              icono="warning"
+              :texto="loginMessage"
+              v-if="loginMessage"
+            />
+
+            <v-img
+              :src="require('../../assets/img/login.png')"
+              aspect-ratio="2"
+              contain
+            />
+          </v-container>
+
           <v-form v-model="valid">
             <v-text-field
               label="Correo electrónico"
@@ -51,6 +50,7 @@
               v-model="user.password"
             />
           </v-form>
+          <ProgressLinear v-bind:loading="loginLoading" color="primary" />
         </v-card-text>
 
         <v-card-actions>
@@ -64,26 +64,23 @@
           >
         </v-card-actions>
         <v-card-actions>
-          <v-btn to="register" color="grey" block>Registarse</v-btn>
+          <v-btn to="register" color="primary" block>Registarse</v-btn>
         </v-card-actions>
-        <v-container>
-          <ProgressLinear v-bind:loading="loginLoading" color="primary" />
-        </v-container>
       </v-card>
     </v-col>
   </v-row>
 </template>
 <script>
-import HelpButton from '../button/HelpButton';
+import DialogHelpSign from '../dialog/DialogHelpSign';
 import Alert from '../alert/Alert';
 import ProgressLinear from '../progressLinear/ProgressLinear';
-import { rules } from '../rulesForm/RulesForm';
+import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
 
 export default {
   name: 'Login',
   components: {
-    HelpButton,
+    DialogHelpSign,
     Alert,
     ProgressLinear,
   },

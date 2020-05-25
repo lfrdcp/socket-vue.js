@@ -3,6 +3,8 @@
     <v-app-bar app clipped-left dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" mensaje-tour="4" />
       <v-toolbar-title>Punto de venta boxcode</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <Notification />
     </v-app-bar>
     <v-navigation-drawer
       dark
@@ -12,29 +14,27 @@
       class="elevation-24"
       mensaje-tour="1"
     >
-      <v-list dense>
-        <v-list-item>
-          <v-list-item-action>
-            <v-avatar size="36px">
-              <img
-                alt="Avatar"
-                src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-              />
-            </v-avatar>
-          </v-list-item-action>
+      <template v-slot:prepend>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+            <img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg" />
+          </v-list-item-avatar>
+
           <v-list-item-content>
             <v-list-item-title>{{ user.name }}</v-list-item-title>
             <v-list-item-subtitle v-if="user.type === 0">
-              Administrador</v-list-item-subtitle
-            >
+              Administrador
+            </v-list-item-subtitle>
             <v-list-item-subtitle v-else-if="user.type === 1">
-              Empleado</v-list-item-subtitle
-            >
+              Empleado
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
+      </template>
+      <v-divider></v-divider>
 
+      <v-list dense>
         <ListItemSingle link="/inicio" icon="home" text="Inicio" />
-        <ListItemSingle link="/inventory" icon="store" text="Inventario" />
 
         <v-list-group no-action prepend-icon="settings" color="white">
           <template v-slot:activator>
@@ -70,24 +70,29 @@
 import { mapState } from 'vuex';
 import ListItemSingle from './ListItemSingle';
 import ListItemGroup from './ListItemGroup';
+import Notification from '../notification/Notification';
 
 export default {
   name: 'Dashboard',
   data: () => ({
     drawer: null,
-    admins: [
-      ['Management', 'people_outline'],
-      ['Settings', 'settings'],
-    ],
+    time: '',
+    date: '',
   }),
   components: {
     ListItemSingle,
     ListItemGroup,
+    Notification,
+  },
+  created() {
+    setInterval(() => {
+      this.time = new Date().toLocaleTimeString();
+      this.date = new Date().toLocaleDateString();
+    }, 1000);
   },
   computed: {
     ...mapState('currentUser', ['user']),
   },
-
   methods: {
     logout() {
       this.$store.dispatch('currentUser/logoutUser');

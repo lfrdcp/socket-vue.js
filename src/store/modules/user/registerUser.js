@@ -1,7 +1,8 @@
 import axios from 'axios';
 import router from '../../../router/index';
-import { convertObjectErrors } from '../convertObjectErrors';
-import { URL } from '../../urlBackend';
+
+import { URL } from '../../../data/url';
+import { convertObjectErrors } from '../../../utils/convertObjectErrors';
 
 const state = {
   user: {},

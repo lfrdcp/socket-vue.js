@@ -5,27 +5,24 @@
         <v-toolbar dark>
           <v-toolbar-title>Registarse</v-toolbar-title>
           <v-spacer></v-spacer>
-          <HelpButton />
+          <DialogHelpSign />
         </v-toolbar>
 
-        <v-card-title class="justify-center"></v-card-title>
-
-        <v-img
-          :src="require('../../assets/img/register.png')"
-          aspect-ratio="2"
-          contain
-        />
-
-        <v-container>
-          <Alert
-            color="warning"
-            icono="warning"
-            :texto="registerMessage"
-            v-if="registerMessage"
-          />
-        </v-container>
-
         <v-card-text>
+          <v-container>
+            <Alert
+              color="warning"
+              icono="warning"
+              :texto="registerMessage"
+              v-if="registerMessage"
+            />
+            <v-img
+              :src="require('../../assets/img/register.png')"
+              aspect-ratio="2"
+              contain
+            />
+          </v-container>
+
           <v-form v-model="valid">
             <v-text-field
               label="Nombre"
@@ -99,12 +96,13 @@
               v-model="user.confirmPassword"
             />
           </v-form>
+          <ProgressLinear v-bind:loading="registerLoading" color="primary" />
         </v-card-text>
 
         <v-card-actions>
           <v-btn
             block
-            color="grey"
+            color="primary"
             type="submit"
             @click="register"
             :disabled="!valid"
@@ -114,24 +112,21 @@
         <v-card-actions>
           <v-btn to="login" color="primary" block>Iniciar sesion</v-btn>
         </v-card-actions>
-        <v-container>
-          <ProgressLinear v-bind:loading="registerLoading" color="primary" />
-        </v-container>
       </v-card>
     </v-col>
   </v-row>
 </template>
 <script>
-import HelpButton from '../button/HelpButton';
+import DialogHelpSign from '../dialog/DialogHelpSign';
 import Alert from '../alert/Alert';
 import ProgressLinear from '../progressLinear/ProgressLinear';
-import { rules } from '../../components/rulesForm/RulesForm';
+import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
 
 export default {
   name: 'Register',
   components: {
-    HelpButton,
+    DialogHelpSign,
     Alert,
     ProgressLinear,
   },

@@ -1,21 +1,13 @@
 <template>
-  <v-app
-    style="
-      background: linear-gradient(#1e96fc  ,#ffffff );
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    "
-  >
+  <v-app id="app">
     <v-container class="fill-height" fluid>
       <router-view />
     </v-container>
-
     <Footer v-show="footer" />
   </v-app>
 </template>
 
 <script>
-import axios from 'axios';
 import Footer from './components/footer/Footer';
 export default {
   name: 'App',
@@ -28,18 +20,10 @@ export default {
   }),
   computed: {
     footer() {
-      if (this.$route.path === '/login' || this.$route.path === '/register') {
-        return true;
-      } else {
-        return false;
-      }
+      return this.$route.path === '/login' || this.$route.path === '/register'
+        ? true
+        : false;
     },
-  },
-  created() {
-    if (Object.prototype.hasOwnProperty.call(localStorage, 'blog_token')) {
-      axios.defaults.headers.common['Authorization'] =
-        'Bearer ' + localStorage.getItem('blog_token');
-    }
   },
 };
 </script>
@@ -49,5 +33,11 @@ export default {
 
 .v-application {
   font-family: 'Abel', sans-serif !important;
+}
+
+#app {
+  background: linear-gradient(#1e96fc, #ffffff);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 </style>

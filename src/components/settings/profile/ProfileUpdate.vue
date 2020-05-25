@@ -152,6 +152,7 @@
           </template>
         </v-simple-table>
       </v-form>
+      <ProgressLinear v-bind:loading="updateLoading" color="primary" />
     </v-card-text>
 
     <v-card-actions>
@@ -164,10 +165,6 @@
         >Editar</v-btn
       >
     </v-card-actions>
-
-    <v-container>
-      <ProgressLinear v-bind:loading="updateLoading" color="primary" />
-    </v-container>
   </v-card>
 </template>
 
@@ -176,7 +173,7 @@ import Alert from '../../alert/Alert';
 import DialogImageProfile from '../../dialog/DialogImageProfile';
 import ProgressLinear from '../../progressLinear/ProgressLinear';
 import Snackbar from '../../snackbar/Snackbar';
-import { rules } from '../../rulesForm/RulesForm';
+import { rules } from '../../../utils/components/rules';
 import { mapState } from 'vuex';
 
 export default {

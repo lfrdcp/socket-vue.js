@@ -1,4 +1,4 @@
-import PageStoreEmployee from '../../components/settings/PageStoreEmployee.vue';
+import PageStoreEmployee from '../../pages/PageStoreEmployee.vue';
 import EmployeeRead from '../../components/settings/storeEmployee/EmployeeRead.vue';
 import StoreRead from '../../components/settings/storeEmployee/StoreRead.vue';
 import StoreUpdate from '../../components/settings/storeEmployee/StoreUpdate.vue';

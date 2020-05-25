@@ -1,6 +1,6 @@
-import PageError404 from '../../components/error/PageError404.vue';
-import PageLogin from '../../components/login/PageLogin.vue';
-import PageRegister from '../../components/register/PageRegister.vue';
+import PageError404 from '../../pages/PageError404.vue';
+import PageLogin from '../../pages/PageLogin.vue';
+import PageRegister from '../../pages/PageRegister.vue';
 
 export default [
   {

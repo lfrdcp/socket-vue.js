@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueRouter from 'vue-router';
-Vue.use(VueRouter);
-const URL = 'http://pointsale.boxcode.com.mx/';
 
-import PageInicio from '../components/inicio/PageInicio.vue';
+Vue.use(VueRouter);
+
+import { URL } from '../data/url';
+
+import PageInicio from '../pages/PageInicio.vue';
 
 import sign from './modules/sign';
-import welcome from './modules/welcome';
+import home from './modules/home';
 import profile from './modules/profile';
 import storeEmployee from './modules/storeEmployee';
 
@@ -17,7 +19,7 @@ const routes = [
     path: '/inicio',
     component: PageInicio,
     meta: { requiresAuth: true },
-    children: [...welcome, ...profile, ...storeEmployee],
+    children: [...home, ...profile, ...storeEmployee],
   },
 ];
 
@@ -27,21 +29,23 @@ const router = new VueRouter({
   routes: routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    axios.defaults.headers.common['Authorization'] =
-      'Bearer ' + localStorage.getItem('blog_token');
-    axios
-      .get(URL + 'api/user/vtoken')
-      .then(() => {
-        next();
-      })
-      .catch(() => {
-        router.replace('/login');
-      });
+    axios.defaults.headers.common['Authorization'] = blog_token();
+    try {
+      await axios.get(URL + 'api/user/vtoken');
+      // console.log('verificarToken');
+      next();
+    } catch (error) {
+      router.replace('/login');
+    }
   } else {
     next();
   }
 });
+
+const blog_token = () => {
+  return 'Bearer ' + localStorage.getItem('blog_token');
+};
 
 export default router;

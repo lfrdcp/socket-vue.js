@@ -1,21 +1,14 @@
 <template>
-  <v-content>
-    <v-container>
-      <v-progress-linear
-        striped
-        :active="loading"
-        :indeterminate="loading"
-        absolute
-        bottom
-        :color="color"
-      ></v-progress-linear>
-    </v-container>
-  </v-content>
+  <v-progress-linear
+    :active="loading"
+    :indeterminate="loading"
+    :color="color"
+  ></v-progress-linear>
 </template>
 
 <script>
 export default {
-  name: "ProgressLinear",
+  name: 'ProgressLinear',
   props: {
     loading: Boolean,
     color: String,

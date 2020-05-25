@@ -1,4 +1,4 @@
-import PageProfile from '../../components/settings/PageProfile.vue';
+import PageProfile from '../../pages/PageProfile.vue';
 
 export default [
   {

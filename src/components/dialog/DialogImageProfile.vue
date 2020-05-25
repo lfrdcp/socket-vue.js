@@ -6,7 +6,7 @@
       </v-btn>
     </template>
 
-    <v-card shaped>
+    <v-card dark shaped>
       <v-container>
         <v-toolbar dark>
           <v-toolbar-title>Fotos sugeridas por el sistema</v-toolbar-title>

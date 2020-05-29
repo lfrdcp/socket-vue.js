@@ -4,6 +4,24 @@
       <v-toolbar-title>Tiendas</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
+    <v-card-title>
+      <svg width="100%" height="100%">
+        <defs>
+          <pattern
+            id="puzzle"
+            x="0"
+            y="0"
+            width="192"
+            height="192"
+            patternUnits="userSpaceOnUse"
+          >
+            <path fill="#8cd790" :d="arbolsvg"></path>
+          </pattern>
+        </defs>
+
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#puzzle)" />
+      </svg>
+    </v-card-title>
     <v-card-text>
       <v-select
         :items="items"
@@ -112,10 +130,12 @@
 </template>
 
 <script>
+import { arbol } from '../../../data/svg';
 export default {
   name: 'StoreRead',
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],
+    arbolsvg: arbol,
   }),
 };
 </script>

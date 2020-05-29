@@ -16,7 +16,7 @@
               :texto="registerMessage"
               v-if="registerMessage"
             />
-            <RegisterSVG />
+            <RegisterSVG width="65%" height="65%" />
           </v-container>
 
           <v-form v-model="valid">

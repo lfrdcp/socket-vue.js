@@ -9,7 +9,7 @@
         color="success"
       />
 
-      <v-col class="text-center">
+      <v-col>
         <Alert
           color="error"
           icono="error"

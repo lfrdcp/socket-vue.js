@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-24" shaped>
+  <v-card class="elevation-24 text-center" shaped>
     <v-toolbar dark>
       <v-toolbar-title>Datos actuales</v-toolbar-title>
       <v-spacer></v-spacer>

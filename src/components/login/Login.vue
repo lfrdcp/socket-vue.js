@@ -16,7 +16,7 @@
               :texto="loginMessage"
               v-if="loginMessage"
             />
-            <LoginSVG />
+            <LoginSVG width="65%" height="65%" />
           </v-container>
 
           <v-form v-model="valid">

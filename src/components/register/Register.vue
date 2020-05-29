@@ -9,18 +9,14 @@
         </v-toolbar>
 
         <v-card-text>
-          <v-container>
+          <v-container class="text-center">
             <Alert
               color="warning"
               icono="warning"
               :texto="registerMessage"
               v-if="registerMessage"
             />
-            <v-img
-              :src="require('../../assets/img/register.png')"
-              aspect-ratio="2"
-              contain
-            />
+            <RegisterSVG />
           </v-container>
 
           <v-form v-model="valid">
@@ -122,13 +118,14 @@ import Alert from '../alert/Alert';
 import ProgressLinear from '../progressLinear/ProgressLinear';
 import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
-
+import RegisterSVG from '../../assets/img/Register.svg';
 export default {
   name: 'Register',
   components: {
     DialogHelpSign,
     Alert,
     ProgressLinear,
+    RegisterSVG,
   },
   data: () => ({
     valid: true,

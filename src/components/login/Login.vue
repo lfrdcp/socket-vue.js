@@ -9,19 +9,14 @@
         </v-toolbar>
 
         <v-card-text>
-          <v-container>
+          <v-container class="text-center">
             <Alert
               color="warning"
               icono="warning"
               :texto="loginMessage"
               v-if="loginMessage"
             />
-
-            <v-img
-              :src="require('../../assets/img/login.png')"
-              aspect-ratio="2"
-              contain
-            />
+            <LoginSVG />
           </v-container>
 
           <v-form v-model="valid">
@@ -76,13 +71,14 @@ import Alert from '../alert/Alert';
 import ProgressLinear from '../progressLinear/ProgressLinear';
 import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
-
+import LoginSVG from '../../assets/img/Login.svg';
 export default {
   name: 'Login',
   components: {
     DialogHelpSign,
     Alert,
     ProgressLinear,
+    LoginSVG,
   },
   data: () => ({
     valid: true,

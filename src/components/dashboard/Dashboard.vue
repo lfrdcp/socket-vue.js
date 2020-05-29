@@ -34,20 +34,24 @@
       <v-divider></v-divider>
 
       <v-list dense>
-        <ListItemSingle link="/inicio" icon="home" text="Inicio" />
+        <ListItemSingle link="/inicio" :icon="icons.home" text="Inicio" />
 
-        <v-list-group no-action prepend-icon="settings" color="white">
+        <v-list-group no-action :prepend-icon="icons.settings" color="white">
           <template v-slot:activator>
             <v-list-item-content mensaje-tour="2">
               <v-list-item-title>Configuración</v-list-item-title>
             </v-list-item-content>
           </template>
 
-          <ListItemGroup link="/profile" icon="fingerprint" text="Perfil" />
+          <ListItemGroup
+            link="/profile"
+            :icon="icons.fingerprint"
+            text="Perfil"
+          />
 
           <ListItemGroup
             link="/storeEmployee"
-            icon="assignment_ind"
+            :icon="icons.employee"
             text="Tienda/Empleado"
           />
         </v-list-group>
@@ -56,7 +60,7 @@
       <template v-slot:append>
         <div class="pa-2" @click="logout">
           <v-btn block dark mensaje-tour="3">
-            <v-icon>power_settings_new </v-icon>
+            <v-icon>{{ icons.power }} </v-icon>
             <v-spacer></v-spacer>
             Cerrar sesion
           </v-btn>
@@ -71,14 +75,10 @@ import { mapState } from 'vuex';
 import ListItemSingle from './ListItemSingle';
 import ListItemGroup from './ListItemGroup';
 import Notification from '../notification/Notification';
-
+import { icons } from '../../data/icons';
 export default {
   name: 'Dashboard',
-  data: () => ({
-    drawer: null,
-    time: '',
-    date: '',
-  }),
+  data: () => ({ icons: icons, drawer: null, time: '', date: '' }),
   components: {
     ListItemSingle,
     ListItemGroup,

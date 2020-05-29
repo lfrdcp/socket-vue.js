@@ -3,6 +3,7 @@
     <v-toolbar dark>
       <v-toolbar-title>Tiendas</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-icon>{{ icons.store }} </v-icon>
     </v-toolbar>
     <v-card-title>
       <svg width="100%" height="100%">
@@ -40,7 +41,7 @@
               color="orange"
               :to="{ path: '/inicio/editTask/' + id }"
             >
-              <v-icon>create</v-icon> </v-btn
+              <v-icon>{{ icons.update }} </v-icon> </v-btn
             ><v-btn
               dark
               fab
@@ -49,7 +50,7 @@
               color="red"
               :to="{ path: '/inicio/editTask/' + id }"
             >
-              <v-icon>delete_outline</v-icon>
+              <v-icon>{{ icons.delete }} </v-icon>
             </v-btn>
           </v-card-title>
 
@@ -131,11 +132,13 @@
 
 <script>
 import { arbol } from '../../../data/svg';
+import { icons } from '../../../data/icons';
 export default {
   name: 'StoreRead',
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],
     arbolsvg: arbol,
+    icons: icons,
   }),
 };
 </script>

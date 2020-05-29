@@ -4,7 +4,7 @@
       <v-toolbar>
         <v-toolbar-title>Configuración del perfil</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-icon>settings </v-icon>
+        <v-icon>{{ icons.fingerprint }} </v-icon>
       </v-toolbar>
     </v-card>
 
@@ -23,9 +23,10 @@
 import { mapState } from 'vuex';
 import ProfileRead from '../components/settings/profile/ProfileRead';
 import ProfileUpdate from '../components/settings/profile/ProfileUpdate';
+import { icons } from '../data/icons';
 export default {
   name: 'PageSettings',
-  data: () => ({}),
+  data: () => ({ icons: icons }),
   components: { ProfileRead, ProfileUpdate },
   computed: {
     ...mapState('currentUser', ['user']),

@@ -12,7 +12,7 @@
           <v-container class="text-center">
             <Alert
               color="warning"
-              icono="warning"
+              :icono="icons.warning"
               :texto="registerMessage"
               v-if="registerMessage"
             />
@@ -23,7 +23,7 @@
             <v-text-field
               label="Nombre"
               name="name"
-              prepend-icon="person"
+              :prepend-icon="icons.person"
               type="text"
               outlined
               color="primary"
@@ -35,7 +35,7 @@
             <v-text-field
               label="Apellido"
               name="lastName"
-              prepend-icon="person"
+              :prepend-icon="icons.person"
               type="text"
               outlined
               color="primary"
@@ -47,7 +47,7 @@
             <v-text-field
               label="Correo electrónico"
               name="email"
-              prepend-icon="email"
+              :prepend-icon="icons.email"
               type="email"
               outlined
               color="primary"
@@ -59,7 +59,7 @@
             <v-text-field
               label="Código para caja"
               name="code"
-              prepend-icon="vpn_key"
+              :prepend-icon="icons.key"
               type="number"
               outlined
               color="primary"
@@ -71,7 +71,7 @@
             <v-text-field
               label="Contraseña"
               name="password"
-              prepend-icon="lock"
+              :prepend-icon="icons.password"
               type="password"
               outlined
               color="primary"
@@ -83,7 +83,7 @@
             <v-text-field
               label="Confirmar contraseña"
               name="password"
-              prepend-icon="lock"
+              :prepend-icon="icons.password"
               type="password"
               outlined
               color="primary"
@@ -102,8 +102,8 @@
             type="submit"
             @click="register"
             :disabled="!valid"
-            >Registarse</v-btn
-          >
+            >Registarse
+          </v-btn>
         </v-card-actions>
         <v-card-actions>
           <v-btn to="login" color="primary" block>Iniciar sesion</v-btn>
@@ -119,6 +119,7 @@ import ProgressLinear from '../progressLinear/ProgressLinear';
 import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
 import RegisterSVG from '../../assets/img/Register.svg';
+import { icons } from '../../data/icons';
 export default {
   name: 'Register',
   components: {
@@ -137,7 +138,7 @@ export default {
       password: '',
       confirmPassword: '',
     },
-
+    icons: icons,
     passwordRules: [rules.empty, rules.minimumEight],
     emailRules: [rules.empty, rules.email],
     emptyRules: [rules.empty],

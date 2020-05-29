@@ -6,7 +6,7 @@
           Configuración de la tienda y empleados
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-icon>assignment_ind</v-icon>
+        <v-icon>{{ icons.employee }} </v-icon>
       </v-toolbar>
     </v-card>
 
@@ -23,7 +23,9 @@
 </template>
 
 <script>
+import { icons } from '../data/icons';
 export default {
   name: 'PageSoreEmployee',
+  data: () => ({ icons: icons }),
 };
 </script>

@@ -4,7 +4,7 @@
       <v-toolbar>
         <v-toolbar-title>Tareas</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-icon>note </v-icon>
+        <v-icon>{{ icons.task }} </v-icon>
       </v-toolbar>
     </v-card>
 
@@ -17,7 +17,7 @@
           <v-toolbar dark>
             <v-toolbar-title>Todas las tareas</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-icon>note </v-icon>
+            <v-icon>{{ icons.task }}</v-icon>
           </v-toolbar>
           <v-card-text>
             <Calendar />
@@ -30,12 +30,10 @@
 <script>
 import { mapState } from 'vuex';
 import Calendar from '../calendar/Calendar';
+import { icons } from '../../data/icons';
 export default {
   name: 'Home',
-  data: () => ({
-    time: '',
-    date: '',
-  }),
+  data: () => ({ time: '', date: '', icons: icons }),
   components: {
     Calendar,
   },

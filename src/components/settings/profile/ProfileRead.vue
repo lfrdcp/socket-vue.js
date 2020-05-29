@@ -3,7 +3,7 @@
     <v-toolbar dark>
       <v-toolbar-title>Datos actuales</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-icon>event</v-icon>
+      <v-icon>{{ icons.calendar }} </v-icon>
     </v-toolbar>
     <v-card-text>
       <v-col cols="12">
@@ -21,7 +21,7 @@
         close-icon="mdi-delete"
       >
         <v-avatar left>
-          <v-icon>check</v-icon>
+          <v-icon>{{ icons.check }} </v-icon>
         </v-avatar>
         Cuenta activada
       </v-chip>
@@ -54,8 +54,10 @@
 
 <script>
 import { mapState } from 'vuex';
+import { icons } from '../../../data/icons';
 export default {
   name: 'PersonalShow',
+  data: () => ({ icons: icons }),
   computed: {
     ...mapState('currentUser', ['user']),
   },

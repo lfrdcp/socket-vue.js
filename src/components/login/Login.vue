@@ -12,7 +12,7 @@
           <v-container class="text-center">
             <Alert
               color="warning"
-              icono="warning"
+              :icono="icons.warning"
               :texto="loginMessage"
               v-if="loginMessage"
             />
@@ -23,7 +23,7 @@
             <v-text-field
               label="Correo electrónico"
               name="login"
-              prepend-icon="person"
+              :prepend-icon="icons.person"
               type="email"
               outlined
               color="primary"
@@ -36,7 +36,7 @@
               id="password"
               label="Contraseña"
               name="password"
-              prepend-icon="lock"
+              :prepend-icon="icons.password"
               type="password"
               outlined
               color="primary"
@@ -55,8 +55,8 @@
             type="submit"
             @click="login"
             :disabled="!valid"
-            >Iniciar sesion</v-btn
-          >
+            >Iniciar sesion
+          </v-btn>
         </v-card-actions>
         <v-card-actions>
           <v-btn to="register" color="primary" block>Registarse</v-btn>
@@ -72,6 +72,7 @@ import ProgressLinear from '../progressLinear/ProgressLinear';
 import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
 import LoginSVG from '../../assets/img/Login.svg';
+import { icons } from '../../data/icons';
 export default {
   name: 'Login',
   components: {
@@ -84,6 +85,7 @@ export default {
     valid: true,
     passwordRules: [rules.minimumEight],
     emailRules: [rules.empty, rules.email],
+    icons: icons,
     user: {
       email: '',
       password: '',

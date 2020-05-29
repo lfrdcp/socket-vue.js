@@ -12,7 +12,7 @@
       <v-col>
         <Alert
           color="error"
-          icono="error"
+          :icono="icons.error"
           texto="Error de servidor, intente más tarde"
           v-if="unexpectedError"
         />
@@ -28,7 +28,7 @@ import Snackbar from '../components/snackbar/Snackbar';
 import Alert from '../components/alert/Alert';
 import { steps, myOptions } from '../data/vueTour';
 import { mapState } from 'vuex';
-
+import { icons } from '../data/icons';
 export default {
   name: 'PageInicio',
   components: {
@@ -36,10 +36,7 @@ export default {
     Snackbar,
     Alert,
   },
-  data: () => ({
-    myOptions: myOptions,
-    steps: steps,
-  }),
+  data: () => ({ icons: icons, myOptions: myOptions, steps: steps }),
   computed: {
     ...mapState('currentUser', ['loginSnackbar', 'unexpectedError']),
   },

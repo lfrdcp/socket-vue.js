@@ -8,7 +8,7 @@
     <v-toolbar dark>
       <v-toolbar-title>Editar datos</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-icon>create</v-icon>
+      <v-icon>{{ icons.update }} </v-icon>
     </v-toolbar>
 
     <v-card-title class="justify-center"></v-card-title>
@@ -16,7 +16,7 @@
     <v-container>
       <Alert
         color="warning"
-        icono="warning"
+        :icono="icons.warning"
         :texto="updateMessage"
         v-if="updateMessage"
       />
@@ -58,7 +58,7 @@
                     :rules="emptyRules"
                     accept="image/png, image/jpeg, image/bmp"
                     placeholder="Subir foto"
-                    prepend-icon="mdi-camera"
+                    :prepend-icon="icons.image"
                     label="Subir foto"
                     v-model="user.img"
                   ></v-file-input>
@@ -79,7 +79,7 @@
                     dense
                     label="Correo electrónico"
                     name="email"
-                    prepend-icon="email"
+                    :prepend-icon="icons.email"
                     type="email"
                     color="primary"
                     :rules="emailRules"
@@ -101,7 +101,7 @@
                     dense
                     label="Código para caja"
                     name="code"
-                    prepend-icon="vpn_key"
+                    :prepend-icon="icons.key"
                     type="number"
                     color="primary"
                     :rules="onlyFourCharacters"
@@ -125,7 +125,7 @@
                     dense
                     label="Contraseña nueva"
                     name="password"
-                    prepend-icon="lock"
+                    :prepend-icon="icons.password"
                     type="password"
                     color="primary"
                     :rules="passwordRules"
@@ -140,7 +140,7 @@
                     dense
                     label="Confirmar contraseña nueva"
                     name="password"
-                    prepend-icon="lock"
+                    :prepend-icon="icons.password"
                     type="password"
                     color="primary"
                     :rules="passwordRules.concat(passwordMatch)"
@@ -175,7 +175,7 @@ import ProgressLinear from '../../progressLinear/ProgressLinear';
 import Snackbar from '../../snackbar/Snackbar';
 import { rules } from '../../../utils/components/rules';
 import { mapState } from 'vuex';
-
+import { icons } from '../../../data/icons';
 export default {
   name: 'PersonalEdit',
   components: {
@@ -186,6 +186,7 @@ export default {
   },
   data: () => ({
     valid: true,
+    icons: icons,
     passwordRules: [rules.empty, rules.minimumEight],
     emailRules: [rules.empty, rules.email],
     emptyRules: [rules.empty],

@@ -24,133 +24,107 @@
 
     <v-card-text>
       <v-form v-model="valid">
-        <v-simple-table>
-          <template>
-            <tbody>
-              <tr>
-                <th>
-                  <v-switch
-                    v-model="swtichs.switchImg"
-                    label="Foto de perfil"
-                  ></v-switch>
-                </th>
-                <td @click="swtichs.switchImgUpload = !swtichs.switchImgUpload">
-                  <v-switch
-                    v-if="swtichs.switchImg"
-                    v-model="swtichs.switchImgDefault"
-                    label="Fotos sugeridas"
-                  ></v-switch>
-                  <DialogImageProfile
-                    v-if="swtichs.switchImgDefault && swtichs.switchImg"
-                  />
-                </td>
-                <td
-                  @click="swtichs.switchImgDefault = !swtichs.switchImgDefault"
-                >
-                  <v-switch
-                    v-if="swtichs.switchImg"
-                    v-model="swtichs.switchImgUpload"
-                    label="Subir foto"
-                  ></v-switch>
-                  <v-file-input
-                    v-if="swtichs.switchImgUpload && swtichs.switchImg"
-                    :required="swtichs.switchImgUpload"
-                    :rules="emptyRules"
-                    accept="image/png, image/jpeg, image/bmp"
-                    placeholder="Subir foto"
-                    :prepend-icon="icons.image"
-                    label="Subir foto"
-                    v-model="user.img"
-                  ></v-file-input>
-                </td>
-              </tr>
-              <tr>
-                <th class="text-right">
-                  <v-switch
-                    v-model="swtichs.switchEmail"
-                    label="Correo electrónico"
-                  ></v-switch>
-                </th>
+        <v-container>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-switch v-model="swtichs.switchImg" label="Foto de perfil" />
+            </v-col>
 
-                <td class="text-left">
-                  <v-text-field
-                    v-if="swtichs.switchEmail"
-                    :required="swtichs.switchEmail"
-                    dense
-                    label="Correo electrónico"
-                    name="email"
-                    :prepend-icon="icons.email"
-                    type="email"
-                    color="primary"
-                    :rules="emailRules"
-                    v-model="user.email"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th class="text-right">
-                  <v-switch
-                    v-model="swtichs.switchVerifierCode"
-                    label="Código para caja"
-                  ></v-switch>
-                </th>
-                <td class="text-left">
-                  <v-text-field
-                    v-if="swtichs.switchVerifierCode"
-                    :required="swtichs.switchVerifierCode"
-                    dense
-                    label="Código para caja"
-                    name="code"
-                    :prepend-icon="icons.key"
-                    type="number"
-                    color="primary"
-                    :rules="onlyFourCharacters"
-                    v-model="user.verifiercode"
-                  />
-                </td>
-              </tr>
-
-              <tr>
-                <th class="text-right">
-                  <v-switch
-                    v-model="swtichs.switchPassword"
-                    label="Contraseña"
-                  ></v-switch>
-                </th>
-
-                <td class="text-left">
-                  <v-text-field
-                    v-if="swtichs.switchPassword"
-                    :required="swtichs.switchPassword"
-                    dense
-                    label="Contraseña nueva"
-                    name="password"
-                    :prepend-icon="icons.password"
-                    type="password"
-                    color="primary"
-                    :rules="passwordRules"
-                    v-model="user.password"
-                  />
-                </td>
-
-                <td class="text-left">
-                  <v-text-field
-                    v-if="swtichs.switchPassword"
-                    :required="swtichs.switchPassword"
-                    dense
-                    label="Confirmar contraseña nueva"
-                    name="password"
-                    :prepend-icon="icons.password"
-                    type="password"
-                    color="primary"
-                    :rules="passwordRules.concat(passwordMatch)"
-                    v-model="user.confirmPassword"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
+            <v-col cols="12" md="4" v-if="swtichs.switchImg">
+              <v-select
+                :prepend-icon="icons.image"
+                item-text="text"
+                item-value="value"
+                :items="optionsImg"
+                label="Seleccione opción"
+                outlined
+                v-model="swtichs.switchImgOption"
+              ></v-select>
+            </v-col>
+            <v-col cols="12" md="4" v-if="swtichs.switchImg">
+              <DialogImageProfile v-if="swtichs.switchImgOption === 0" />
+              <v-file-input
+                v-if="swtichs.switchImgOption === 1"
+                required
+                label="Subir foto"
+                v-model="user.img"
+                outlined
+              ></v-file-input>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-switch v-model="swtichs.switchEmail" label="Correo" />
+            </v-col>
+            <v-col cols="12" md="8">
+              <v-text-field
+                v-if="swtichs.switchEmail"
+                :required="swtichs.switchEmail"
+                outlined
+                label="Correo electrónico"
+                name="email"
+                :prepend-icon="icons.email"
+                type="email"
+                color="primary"
+                :rules="emailRules"
+                v-model="user.email"
+            /></v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-switch
+                v-model="swtichs.switchVerifierCode"
+                label="Código de caja"
+              />
+            </v-col>
+            <v-col cols="12" md="8">
+              <v-text-field
+                v-if="swtichs.switchVerifierCode"
+                :required="swtichs.switchVerifierCode"
+                outlined
+                label="Código de caja"
+                name="code"
+                :prepend-icon="icons.key"
+                type="number"
+                color="primary"
+                :rules="onlyFourCharacters"
+                v-model="user.verifierCode"
+            /></v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-switch v-model="swtichs.switchPassword" label="Contraseña" />
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-if="swtichs.switchPassword"
+                :required="swtichs.switchPassword"
+                outlined
+                label="Contraseña nueva"
+                name="password"
+                :prepend-icon="icons.password"
+                type="password"
+                color="primary"
+                :rules="passwordRules"
+                v-model="user.password"
+              />
+            </v-col>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-if="swtichs.switchPassword"
+                :required="swtichs.switchPassword"
+                outlined
+                label="Confirmar contraseña "
+                name="password"
+                :prepend-icon="icons.password"
+                type="password"
+                color="primary"
+                :rules="passwordRules.concat(passwordMatch)"
+                v-model="user.confirmPassword"
+              />
+            </v-col>
+          </v-row>
+        </v-container>
       </v-form>
       <ProgressLinear v-bind:loading="updateLoading" color="primary" />
     </v-card-text>
@@ -191,16 +165,20 @@ export default {
     emailRules: [rules.empty, rules.email],
     emptyRules: [rules.empty],
     onlyFourCharacters: [rules.onlyFourCharacters],
+
+    optionsImg: [
+      { text: 'Subir  foto', value: 1 },
+      { text: 'Seleccionar foto', value: 0 },
+    ],
     swtichs: {
       switchEmail: false,
       switchVerifierCode: false,
       switchPassword: false,
       switchImg: false,
-      switchImgDefault: true,
-      switchImgUpload: false,
+      switchImgOption: true,
     },
     user: {
-      img: '',
+      img: [],
       verifierCode: '',
       email: '',
       password: '',

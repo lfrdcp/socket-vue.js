@@ -45,7 +45,7 @@
             />
 
             <v-text-field
-              label="Correo electrónico"
+              label="Correo "
               name="email"
               :prepend-icon="icons.email"
               type="email"

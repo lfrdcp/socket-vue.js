@@ -21,7 +21,7 @@
 
           <v-form v-model="valid">
             <v-text-field
-              label="Correo electrónico"
+              label="Correo "
               name="login"
               :prepend-icon="icons.person"
               type="email"

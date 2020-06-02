@@ -16,7 +16,7 @@
             height="192"
             patternUnits="userSpaceOnUse"
           >
-            <path fill="#8cd790" :d="arbolsvg"></path>
+            <path fill="%23109cf1" :d="arbolsvg"></path>
           </pattern>
         </defs>
 

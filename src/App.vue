@@ -1,7 +1,9 @@
 <template>
   <v-app id="app">
     <v-container class="fill-height" fluid>
-      <router-view />
+      <transition mode="out-in">
+        <router-view></router-view>
+      </transition>
     </v-container>
     <Footer v-show="footer" />
   </v-app>
@@ -39,5 +41,13 @@ export default {
   background: linear-gradient(#1e96fc, #ffffff);
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

@@ -10,7 +10,9 @@
 
     <v-row cols="12" sm="8" md="4">
       <v-col>
-        <router-view />
+        <transition mode="out-in">
+          <router-view />
+        </transition>
       </v-col>
       <v-col>
         <v-card class="elevation-24" shaped>
@@ -60,3 +62,13 @@ export default {
   },
 };
 </script>
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

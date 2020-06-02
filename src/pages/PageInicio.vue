@@ -16,7 +16,9 @@
           texto="Error de servidor, intente más tarde"
           v-if="unexpectedError"
         />
-        <router-view></router-view>
+        <transition mode="out-in">
+          <router-view></router-view>
+        </transition>
       </v-col>
     </v-container>
   </v-content>
@@ -48,3 +50,14 @@ export default {
   // },
 };
 </script>
+
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

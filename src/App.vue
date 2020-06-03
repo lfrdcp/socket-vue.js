@@ -2,7 +2,7 @@
   <v-app id="app">
     <v-container class="fill-height" fluid>
       <transition mode="out-in">
-        <router-view></router-view>
+        <router-view />
       </transition>
     </v-container>
     <Footer v-show="footer" />

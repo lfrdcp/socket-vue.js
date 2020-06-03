@@ -5,24 +5,7 @@
       <v-spacer></v-spacer>
       <v-icon>{{ icons.store }} </v-icon>
     </v-toolbar>
-    <v-card-title>
-      <svg width="100%" height="100%">
-        <defs>
-          <pattern
-            id="puzzle"
-            x="0"
-            y="0"
-            width="192"
-            height="192"
-            patternUnits="userSpaceOnUse"
-          >
-            <path fill="%23109cf1" :d="arbolsvg"></path>
-          </pattern>
-        </defs>
 
-        <rect x="0" y="0" width="100%" height="100%" fill="url(#puzzle)" />
-      </svg>
-    </v-card-title>
     <v-card-text>
       <v-select
         :items="items"
@@ -31,35 +14,33 @@
       ></v-select>
 
       <v-card shaped>
-        <v-row class="fill-height">
-          <v-card-title>
-            <v-btn
-              dark
-              fab
-              small
-              class="elevation-24"
-              color="orange"
-              :to="{ path: '/inicio/editTask/' + id }"
-            >
-              <v-icon>{{ icons.update }} </v-icon> </v-btn
-            ><v-btn
-              dark
-              fab
-              small
-              class="elevation-24"
-              color="red"
-              :to="{ path: '/inicio/editTask/' + id }"
-            >
-              <v-icon>{{ icons.delete }} </v-icon>
-            </v-btn>
-          </v-card-title>
+        <v-card-title>
+          <SvgComponent :content="arbolsvg" />
+
+          <v-btn
+            dark
+            fab
+            small
+            class="elevation-24"
+            color="orange"
+            :to="{ path: '' }"
+          >
+            <v-icon>{{ icons.update }} </v-icon> </v-btn
+          ><v-btn
+            dark
+            fab
+            small
+            class="elevation-24"
+            color="red"
+            :to="{ path: '' }"
+          >
+            <v-icon>{{ icons.delete }} </v-icon>
+          </v-btn>
 
           <v-spacer></v-spacer>
 
-          <v-card-title>
-            <div class="pl-12 pt-12">Ali Conners</div>
-          </v-card-title>
-        </v-row>
+          <div class="pl-12 pt-12">Ali Conners</div>
+        </v-card-title>
 
         <v-list two-line>
           <v-list-item>
@@ -133,8 +114,12 @@
 <script>
 import { arbol } from '../../../data/svg';
 import { icons } from '../../../data/icons';
+import SvgComponent from '../../svg/SvgComponent';
 export default {
   name: 'StoreRead',
+  components: {
+    SvgComponent,
+  },
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],
     arbolsvg: arbol,

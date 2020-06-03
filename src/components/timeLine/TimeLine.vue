@@ -1,43 +1,39 @@
 <template>
-  <v-timeline-item hide-dot fill-dot :color="color" dark>
+  <v-timeline-item hide-dot fill-dot dark>
     <v-card class="elevation-24" shaped>
       <v-card-title :class="color">
-        <h3>
-          {{ titulo }}
-        </h3>
+        {{ titulo }}
       </v-card-title>
 
-      <v-container>
-        <v-col>
-          <p>{{ contenido }}</p>
-        </v-col>
-      </v-container>
+      <v-card-text>
+        <v-container>
+          {{ contenido }}
+        </v-container>
+      </v-card-text>
+
       <v-card-actions>
-        <v-btn
-          fab
-          small
-          class="elevation-24"
+        <ButtonCircular
           color="orange"
-          :to="{ path: '/inicio/editTask/' + id }"
-        >
-          <v-icon>create</v-icon> </v-btn
-        ><v-btn
-          fab
-          small
-          class="elevation-24"
-          color="red"
-          :to="{ path: '/inicio/editTask/' + id }"
-        >
-          <v-icon>delete_outline</v-icon>
-        </v-btn>
+          :icon="icons.update"
+          :link="`/inicio/editTask/` + id"
+        />
+        <ButtonCircular color="red" :icon="icons.delete" link="" />
       </v-card-actions>
     </v-card>
   </v-timeline-item>
 </template>
 <script>
+import ButtonCircular from '../button/ButtonCircular';
+import { icons } from '../../data/icons';
 export default {
   name: 'TimeLine',
   props: ['id', 'titulo', 'contenido', 'color', 'img', 'nombreImg'],
+  components: {
+    ButtonCircular,
+  },
+  data: () => ({
+    icons: icons,
+  }),
 };
 </script>
 

@@ -16,30 +16,12 @@
       <v-card shaped>
         <v-card-title>
           <SvgComponent :content="arbolsvg" />
+          <ButtonCircular color="orange" :icon="icons.update" link="" />
+          <ButtonCircular color="red" :icon="icons.delete" link="" />
 
-          <v-btn
-            dark
-            fab
-            small
-            class="elevation-24"
-            color="orange"
-            :to="{ path: '' }"
-          >
-            <v-icon>{{ icons.update }} </v-icon> </v-btn
-          ><v-btn
-            dark
-            fab
-            small
-            class="elevation-24"
-            color="red"
-            :to="{ path: '' }"
-          >
-            <v-icon>{{ icons.delete }} </v-icon>
-          </v-btn>
-
-          <v-spacer></v-spacer>
-
-          <div class="pl-12 pt-12">Ali Conners</div>
+          <div class="pl-12 pt-12 ">
+            <div class="font-weight-black">Ali Conners</div>
+          </div>
         </v-card-title>
 
         <v-list two-line>
@@ -115,10 +97,12 @@
 import { arbol } from '../../../data/svg';
 import { icons } from '../../../data/icons';
 import SvgComponent from '../../svg/SvgComponent';
+import ButtonCircular from '../../button/ButtonCircular';
 export default {
   name: 'StoreRead',
   components: {
     SvgComponent,
+    ButtonCircular,
   },
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],

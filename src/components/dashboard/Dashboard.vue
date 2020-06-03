@@ -51,7 +51,7 @@
 
           <ListItemGroup
             link="/storeEmployee"
-            :icon="icons.employee"
+            :icon="icons.storeEmployee"
             text="Tienda/Empleado"
           />
         </v-list-group>

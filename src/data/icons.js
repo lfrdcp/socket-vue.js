@@ -12,7 +12,7 @@ export const icons = {
   home: 'home',
   settings: 'settings',
   fingerprint: 'fingerprint',
-  employee: 'assignment_ind',
+  storeEmployee: 'assignment_ind',
   power: 'power_settings_new',
   check: 'check',
   calendar: 'event',
@@ -20,4 +20,5 @@ export const icons = {
   image: 'image',
   store: 'storefront',
   location: 'location_on',
+  employee: 'folder_shared',
 };

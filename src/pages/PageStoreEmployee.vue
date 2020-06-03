@@ -6,7 +6,7 @@
           Configuración de tienda y empleado
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-icon>{{ icons.employee }} </v-icon>
+        <v-icon>{{ icons.storeEmployee }} </v-icon>
       </v-toolbar>
     </v-card>
 

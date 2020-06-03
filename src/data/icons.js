@@ -19,4 +19,5 @@ export const icons = {
   error: 'error',
   image: 'image',
   store: 'storefront',
+  location: 'location_on',
 };

@@ -3,7 +3,7 @@
     <v-card class="elevation-24" shaped>
       <v-toolbar>
         <v-toolbar-title>
-          Configuración de la tienda y empleados
+          Configuración de tienda y empleado
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-icon>{{ icons.employee }} </v-icon>

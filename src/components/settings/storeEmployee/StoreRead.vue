@@ -14,80 +14,31 @@
       ></v-select>
 
       <v-card shaped>
+        <SvgComponent :content="arbolsvg" />
         <v-card-title>
-          <SvgComponent :content="arbolsvg" />
-          <ButtonCircular color="orange" :icon="icons.update" link="" />
-          <ButtonCircular color="red" :icon="icons.delete" link="" />
-
-          <div class="pl-12 pt-12 ">
-            <div class="font-weight-black">Ali Conners</div>
-          </div>
+          Tienda 1
         </v-card-title>
 
         <v-list two-line>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon color="indigo">mdi-phone</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>(650) 555-1234</v-list-item-title>
-              <v-list-item-subtitle>Mobile</v-list-item-subtitle>
-            </v-list-item-content>
-
-            <v-list-item-icon>
-              <v-icon>mdi-message-text</v-icon>
-            </v-list-item-icon>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-action></v-list-item-action>
-
-            <v-list-item-content>
-              <v-list-item-title>(323) 555-6789</v-list-item-title>
-              <v-list-item-subtitle>Work</v-list-item-subtitle>
-            </v-list-item-content>
-
-            <v-list-item-icon>
-              <v-icon>mdi-message-text</v-icon>
-            </v-list-item-icon>
-          </v-list-item>
-
-          <v-divider inset></v-divider>
-
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon color="indigo">mdi-email</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>aliconnors@example.com</v-list-item-title>
-              <v-list-item-subtitle>Personal</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-action></v-list-item-action>
-
-            <v-list-item-content>
-              <v-list-item-title>ali_connors@example.com</v-list-item-title>
-              <v-list-item-subtitle>Work</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-divider inset></v-divider>
-
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon color="indigo">mdi-map-marker</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>1400 Main Street</v-list-item-title>
-              <v-list-item-subtitle>Orlando, FL 79938</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          <ListItem :icon="icons.location" title="Dirección" />
+          <v-divider inset />
+          <v-row>
+            <v-col>
+              <ListItem title="Zempoala" subtitle="Calle" />
+              <ListItem title="30" subtitle="No. interior" />
+              <ListItem title="25" subtitle="No. exterior" />
+            </v-col>
+            <v-col>
+              <ListItem title="Flor" subtitle="Colonia" />
+              <ListItem title="Cuernavaca" subtitle="Ciudad" />
+              <ListItem title="Morelos" subtitle="Estado" />
+            </v-col>
+          </v-row>
         </v-list>
+        <v-card-actions>
+          <ButtonCircular color="orange" :icon="icons.update" link="" />
+          <ButtonCircular color="red" :icon="icons.delete" link="" />
+        </v-card-actions>
       </v-card>
     </v-card-text>
   </v-card>
@@ -98,11 +49,13 @@ import { arbol } from '../../../data/svg';
 import { icons } from '../../../data/icons';
 import SvgComponent from '../../svg/SvgComponent';
 import ButtonCircular from '../../button/ButtonCircular';
+import ListItem from '../../listItem/ListItem';
 export default {
   name: 'StoreRead',
   components: {
     SvgComponent,
     ButtonCircular,
+    ListItem,
   },
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],

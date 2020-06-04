@@ -2,7 +2,7 @@
   <v-container>
     <v-card class="elevation-24" shaped>
       <v-toolbar>
-        <v-toolbar-title>Configuración del perfil</v-toolbar-title>
+        <v-toolbar-title>Perfil</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-icon>{{ icons.fingerprint }} </v-icon>
       </v-toolbar>

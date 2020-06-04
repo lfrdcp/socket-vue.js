@@ -7,39 +7,27 @@
     </v-toolbar>
 
     <v-card-text>
-      <v-select
-        :items="items"
-        label="Seleccione una tienda"
-        outlined
-      ></v-select>
-
-      <v-card shaped>
-        <SvgComponent :content="arbolsvg" />
-        <v-card-title>
-          Tienda 1
-        </v-card-title>
-
-        <v-list two-line>
-          <ListItem :icon="icons.location" title="Dirección" />
-          <v-divider inset />
-          <v-row>
-            <v-col>
-              <ListItem title="Zempoala" subtitle="Calle" />
-              <ListItem title="30" subtitle="No. interior" />
-              <ListItem title="25" subtitle="No. exterior" />
-            </v-col>
-            <v-col>
-              <ListItem title="Flor" subtitle="Colonia" />
-              <ListItem title="Cuernavaca" subtitle="Ciudad" />
-              <ListItem title="Morelos" subtitle="Estado" />
-            </v-col>
-          </v-row>
-        </v-list>
-        <v-card-actions>
-          <ButtonCircular color="orange" :icon="icons.update" link="" />
-          <ButtonCircular color="red" :icon="icons.delete" link="" />
-        </v-card-actions>
-      </v-card>
+      <v-select :items="items" label="Seleccione una tienda" outlined />
+      <h3>Tienda 1</h3>
+      <SvgComponent :content="arbolsvg" />
+      <v-list two-line>
+        <ListItem :icon="icons.location" title="Dirección" />
+        <v-divider inset />
+        <v-row>
+          <v-col>
+            <ListItem title="Zempoala" subtitle="Calle" />
+            <ListItem title="30" subtitle="No. interior" />
+            <ListItem title="25" subtitle="No. exterior" />
+          </v-col>
+          <v-col>
+            <ListItem title="Flor" subtitle="Colonia" />
+            <ListItem title="Cuernavaca" subtitle="Ciudad" />
+            <ListItem title="Morelos" subtitle="Estado" />
+          </v-col>
+        </v-row>
+      </v-list>
+      <ButtonCircular color="orange" :icon="icons.update" link="" />
+      <ButtonCircular color="red" :icon="icons.delete" link="" />
     </v-card-text>
   </v-card>
 </template>

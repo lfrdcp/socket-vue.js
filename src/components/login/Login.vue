@@ -10,12 +10,6 @@
 
         <v-card-text>
           <v-container class="text-center">
-            <Alert
-              color="warning"
-              :icono="icons.warning"
-              :texto="loginMessage"
-              v-if="loginMessage"
-            />
             <LoginSVG width="65%" height="65%" />
           </v-container>
 
@@ -45,6 +39,25 @@
               v-model="user.password"
             />
           </v-form>
+          <Alert
+            color="success"
+            :icono="icons.check"
+            texto="Registrado correctamente"
+            v-if="registerSnackbar"
+          />
+          <Alert
+            color="warning"
+            :icono="icons.warning"
+            :texto="loginMessage"
+            v-if="loginMessage"
+          />
+          <Alert
+            color="error"
+            icono="error"
+            texto="Error de servidor, intente más tarde"
+            v-if="unexpectedError"
+          />
+
           <ProgressLinear v-bind:loading="loginLoading" color="primary" />
         </v-card-text>
 
@@ -92,8 +105,12 @@ export default {
     },
   }),
   computed: {
-    ...mapState('currentUser', ['loginMessage']),
-    ...mapState('currentUser', ['loginLoading']),
+    ...mapState('currentUser', [
+      'loginMessage',
+      'unexpectedError',
+      'loginLoading',
+    ]),
+    ...mapState('registerUser', ['registerSnackbar']),
   },
   methods: {
     login() {

@@ -1,19 +1,6 @@
 <template>
   <v-content>
     <v-container>
-      <Snackbar
-        v-bind:snackbar="registerSnackbar"
-        text="Registrado correctamente"
-        color="success"
-      />
-
-      <Alert
-        color="error"
-        icono="error"
-        texto="Error de servidor, intente más tarde"
-        v-if="unexpectedError"
-      />
-
       <Login />
     </v-container>
   </v-content>
@@ -21,21 +8,10 @@
 
 <script>
 import Login from '../components/login/Login';
-import Snackbar from '../components/snackbar/Snackbar';
-import Alert from '../components/alert/Alert';
-import { mapState } from 'vuex';
-
+import { icons } from '../data/icons';
 export default {
   name: 'PaginaLogin',
-  components: {
-    Login,
-    Snackbar,
-    Alert,
-  },
-
-  computed: {
-    ...mapState('registerUser', ['registerSnackbar']),
-    ...mapState('currentUser', ['unexpectedError']),
-  },
+  components: { Login },
+  data: () => ({ icons: icons }),
 };
 </script>

@@ -106,13 +106,10 @@ const actions = {
         commit('setLoginSnackbar', true);
         router.push('/inicio');
       } else {
-        // CREDENCIALES INCORRECTAS ❌
-        commit('setLoginMessage', response.data.message);
+        commit('setLoginMessage', response.data.message); // CREDENCIALES INCORRECTAS ❌
       }
     } catch (error) {
-      // ERROR EN EL SERVIDOR 🔥
-      commit('setUnexpectedError', true);
-      commit('setLoginMessage', 'Error de servidor, intente más tarde');
+      commit('setUnexpectedError', true); // ERROR EN EL SERVIDOR 🔥
     } finally {
       commit('setLoginLoading', false);
     }

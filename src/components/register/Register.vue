@@ -10,12 +10,6 @@
 
         <v-card-text>
           <v-container class="text-center">
-            <Alert
-              color="warning"
-              :icono="icons.warning"
-              :texto="registerMessage"
-              v-if="registerMessage"
-            />
             <RegisterSVG width="65%" height="65%" />
           </v-container>
 
@@ -92,6 +86,18 @@
               v-model="user.confirmPassword"
             />
           </v-form>
+          <Alert
+            color="error"
+            icono="error"
+            texto="Error de servidor, intente más tarde"
+            v-if="unexpectedError"
+          />
+          <Alert
+            color="warning"
+            :icono="icons.warning"
+            :texto="registerMessage"
+            v-if="registerMessage"
+          />
           <ProgressLinear v-bind:loading="registerLoading" color="primary" />
         </v-card-text>
 
@@ -151,7 +157,11 @@ export default {
         'La contraseña no coincide'
       );
     },
-    ...mapState('registerUser', ['registerLoading', 'registerMessage']),
+    ...mapState('registerUser', [
+      'registerLoading',
+      'registerMessage',
+      'unexpectedError',
+    ]),
   },
 
   methods: {

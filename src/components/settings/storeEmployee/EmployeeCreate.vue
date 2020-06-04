@@ -1,17 +1,24 @@
 <template>
   <v-form v-model="valid">
-    <Alert
-      color="warning"
-      :icono="icons.warning"
-      :texto="employeeMessage"
-      v-if="employeeMessage"
-    />
-    <Snackbar
-      v-bind:snackbar="employeeSnackbar"
-      text="Ha iniciado sesion de manera correcta"
-      color="success"
-    />
     <v-container>
+      <Alert
+        color="success"
+        :icono="icons.check"
+        texto="Registrado correctamente"
+        v-if="employeeSnackbar"
+      />
+      <Alert
+        color="warning"
+        :icono="icons.warning"
+        :texto="employeeMessage"
+        v-if="employeeMessage"
+      />
+      <Alert
+        color="error"
+        :icono="icons.error"
+        texto="Error de servidor, intente más tarde"
+        v-if="unexpectedError"
+      />
       <v-row>
         <v-col cols="9" md="11">
           <v-text-field
@@ -47,7 +54,7 @@ import { mapState } from 'vuex';
 import { rules } from '../../../utils/components/rules';
 import { icons } from '../../../data/icons';
 import ButtonCircular from '../../button/ButtonCircular';
-import Snackbar from '../../snackbar/Snackbar';
+
 import Alert from '../../alert/Alert';
 import ProgressLinear from '../../progressLinear/ProgressLinear';
 export default {
@@ -56,7 +63,6 @@ export default {
     ButtonCircular,
     Alert,
     ProgressLinear,
-    Snackbar,
   },
   data: () => ({
     valid: true,
@@ -72,6 +78,7 @@ export default {
       'employeeLoading',
       'employeeMessage',
       'employeeSnackbar',
+      'unexpectedError',
     ]),
   },
   methods: {

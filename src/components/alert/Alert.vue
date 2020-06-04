@@ -1,6 +1,13 @@
 <template>
-  <div>
-    <v-alert :color="color" :icon="icono" border="left" prominent>
+  <div class="elevation-3">
+    <v-alert
+      dense
+      prominent
+      colored-border
+      :color="color"
+      :icon="icono"
+      border="left"
+    >
       {{ texto }}
     </v-alert>
   </div>

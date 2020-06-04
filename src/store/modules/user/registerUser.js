@@ -38,8 +38,10 @@ const actions = {
       let response = await axios.post(URL + 'api/user/register', user);
       if (response.data.status === 'c8usu0') {
         // CÓDIGO CORRECTO ✅
-        commit('setRegisterSnackbar', true);
+
         commit('setRegisterMessage', '');
+        commit('setRegisterSnackbar', true);
+        setTimeout(() => commit('setRegisterSnackbar', false), 5000);
         router.push('/login');
       } else if (response.data.status === '1F4usu0') {
         // CÓDIGO ERRONEO AL GUARDAR 🔥
@@ -50,8 +52,7 @@ const actions = {
         commit('setRegisterMessage', errors);
       }
     } catch (error) {
-      // ERROR EN EL SERVIDOR 🔥
-      commit('setUnexpectedError', true);
+      commit('setUnexpectedError', true); // ERROR EN EL SERVIDOR 🔥
     } finally {
       commit('setRegisterLoading', false);
     }

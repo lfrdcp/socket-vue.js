@@ -7,6 +7,7 @@
     </v-toolbar>
 
     <v-card-text>
+      <EmployeeCreate />
       <v-list>
         <v-row v-for="(item, i) in employees" :key="i">
           <v-col>
@@ -17,8 +18,13 @@
             />
           </v-col>
           <v-col class="text-end">
-            <ButtonCircular color="orange" :icon="icons.update" link="" />
-            <ButtonCircular color="red" :icon="icons.delete" link="" />
+            <!-- <ButtonCircular color="orange" :icon="icons.update" link="" /> -->
+            <ButtonCircular
+              color="red"
+              :icon="icons.delete"
+              link=""
+              @click.native="employeeDelete"
+            />
           </v-col>
         </v-row>
       </v-list>
@@ -27,22 +33,28 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { icons } from '../../../data/icons';
 import ButtonCircular from '../../button/ButtonCircular';
 import ListItem from '../../listItem/ListItem';
+import EmployeeCreate from './EmployeeCreate';
 export default {
   name: 'EmployeeRead',
   components: {
     ButtonCircular,
     ListItem,
+    EmployeeCreate,
   },
   data: () => ({
     icons: icons,
-    employees: [
-      { key: 1, email: 'alfredo@gmail.com' },
-      { key: 2, email: 'alejandro@gmail.com' },
-      { key: 3, email: 'santiago@gmail.com' },
-    ],
   }),
+  computed: {
+    ...mapState('employee', ['employees']),
+  },
+  methods: {
+    employeeDelete() {
+      alert('Eliminar empleado');
+    },
+  },
 };
 </script>

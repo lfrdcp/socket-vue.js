@@ -59,7 +59,7 @@ export default {
   name: 'PersonalShow',
   data: () => ({ icons: icons }),
   computed: {
-    ...mapState('currentUser', ['user']),
+    ...mapState('user', ['user']),
   },
 };
 </script>

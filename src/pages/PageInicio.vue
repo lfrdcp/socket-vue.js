@@ -13,7 +13,7 @@
 <script>
 import Dashboard from '../components/dashboard/Dashboard';
 import { steps, myOptions } from '../data/vueTour';
-import { mapState } from 'vuex';
+
 import { icons } from '../data/icons';
 export default {
   name: 'PageInicio',
@@ -21,11 +21,9 @@ export default {
     Dashboard,
   },
   data: () => ({ icons: icons, myOptions: myOptions, steps: steps }),
-  computed: {
-    ...mapState('currentUser', ['loginSnackbar']),
-  },
+
   created() {
-    this.$store.dispatch('currentUser/getUser');
+    this.$store.dispatch('user/setUpUser');
   },
   // mounted: function() {
   //   this.$tours['myTour'].start();

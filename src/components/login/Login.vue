@@ -54,7 +54,7 @@
           <Alert
             color="error"
             icono="error"
-            texto="Error de servidor, intente más tarde"
+            :texto="unexpectedError"
             v-if="unexpectedError"
           />
 
@@ -105,16 +105,16 @@ export default {
     },
   }),
   computed: {
-    ...mapState('currentUser', [
+    ...mapState('user', [
       'loginMessage',
-      'unexpectedError',
       'loginLoading',
+      'unexpectedError',
+      'registerSnackbar',
     ]),
-    ...mapState('registerUser', ['registerSnackbar']),
   },
   methods: {
     login() {
-      this.$store.dispatch('currentUser/loginUser', this.user);
+      this.$store.dispatch('user/login', this.user);
     },
   },
 };

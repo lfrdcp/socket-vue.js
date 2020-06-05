@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     employeeCreate() {
-      this.$store.dispatch('employee/createEmployee', this.employee);
+      this.$store.dispatch('employee/create', this.employee);
     },
   },
 };

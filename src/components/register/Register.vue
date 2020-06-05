@@ -89,7 +89,7 @@
           <Alert
             color="error"
             icono="error"
-            texto="Error de servidor, intente más tarde"
+            :texto="unexpectedError"
             v-if="unexpectedError"
           />
           <Alert
@@ -157,7 +157,7 @@ export default {
         'La contraseña no coincide'
       );
     },
-    ...mapState('registerUser', [
+    ...mapState('user', [
       'registerLoading',
       'registerMessage',
       'unexpectedError',
@@ -166,7 +166,7 @@ export default {
 
   methods: {
     register() {
-      this.$store.dispatch('registerUser/registerUser', this.user);
+      this.$store.dispatch('user/register', this.user);
     },
   },
 };

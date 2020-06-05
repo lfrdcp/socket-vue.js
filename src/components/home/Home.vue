@@ -30,7 +30,6 @@
   </v-container>
 </template>
 <script>
-import { mapState } from 'vuex';
 import Calendar from '../calendar/Calendar';
 import { icons } from '../../data/icons';
 export default {
@@ -38,9 +37,6 @@ export default {
   data: () => ({ time: '', date: '', icons: icons }),
   components: {
     Calendar,
-  },
-  computed: {
-    ...mapState('currentUser', ['user']),
   },
   created() {
     setInterval(this.getNow, 1000);

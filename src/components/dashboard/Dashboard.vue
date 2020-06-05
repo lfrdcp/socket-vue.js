@@ -91,11 +91,11 @@ export default {
     }, 1000);
   },
   computed: {
-    ...mapState('currentUser', ['user']),
+    ...mapState('user', ['user']),
   },
   methods: {
     logout() {
-      this.$store.dispatch('currentUser/logoutUser');
+      this.$store.dispatch('user/logout');
     },
   },
 };

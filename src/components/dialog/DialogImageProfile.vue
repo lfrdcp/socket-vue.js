@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     inputImg(i) {
-      this.$store.dispatch('currentUser/inputImg', i);
+      this.$store.dispatch('currentUser/setUpImg', i);
     },
   },
 };

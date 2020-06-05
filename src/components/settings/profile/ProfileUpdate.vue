@@ -192,16 +192,12 @@ export default {
         'La contraseña no coincide'
       );
     },
-    ...mapState('currentUser', [
-      'updateLoading',
-      'updateMessage',
-      'updateSnackbar',
-    ]),
+    ...mapState('user', ['updateLoading', 'updateMessage', 'updateSnackbar']),
   },
   methods: {
     updateUser() {
       let params = { user: this.user, swtichs: this.swtichs };
-      this.$store.dispatch('currentUser/updateUser', params);
+      this.$store.dispatch('user/updateUser', params);
     },
   },
 };

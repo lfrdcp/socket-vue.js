@@ -4,20 +4,20 @@
       <Alert
         color="success"
         :icono="icons.check"
-        texto="Registrado correctamente"
-        v-if="employeeSnackbar"
+        :texto="createSuccessMsg"
+        v-if="createSuccessMsg"
       />
       <Alert
         color="warning"
         :icono="icons.warning"
-        :texto="employeeMessage"
-        v-if="employeeMessage"
+        :texto="createServerMsg"
+        v-if="createServerMsg"
       />
       <Alert
         color="error"
         :icono="icons.error"
-        texto="Error de servidor, intente más tarde"
-        v-if="unexpectedError"
+        :texto="createErrorMsg"
+        v-if="createErrorMsg"
       />
       <v-row>
         <v-col cols="9" md="11">
@@ -45,7 +45,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <ProgressLinear v-bind:loading="employeeLoading" color="primary" />
+    <ProgressLinear v-bind:loading="createLoading" color="primary" />
   </v-form>
 </template>
 
@@ -75,10 +75,10 @@ export default {
   }),
   computed: {
     ...mapState('employee', [
-      'employeeLoading',
-      'employeeMessage',
-      'employeeSnackbar',
-      'unexpectedError',
+      'createLoading',
+      'createServerMsg',
+      'createSuccessMsg',
+      'createErrorMsg',
     ]),
   },
   methods: {

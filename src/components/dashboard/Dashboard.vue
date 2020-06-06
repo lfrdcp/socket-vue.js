@@ -17,7 +17,7 @@
       <template v-slot:prepend>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg" />
+            <img :src="user.img" />
           </v-list-item-avatar>
 
           <v-list-item-content>

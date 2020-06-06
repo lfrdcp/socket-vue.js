@@ -8,9 +8,7 @@
     <v-card-text>
       <v-col cols="12">
         <v-avatar class="profile" size="164">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"
-          ></v-img>
+          <v-img :src="user.img" />
         </v-avatar>
       </v-col>
       <v-chip

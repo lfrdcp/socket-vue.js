@@ -56,11 +56,11 @@ export default {
     dialog: false,
   }),
   computed: {
-    ...mapState('currentUser', ['img']),
+    ...mapState('user', ['img']),
   },
   methods: {
     inputImg(i) {
-      this.$store.dispatch('currentUser/setUpImg', i);
+      this.$store.dispatch('user/setUpImg', i);
     },
   },
 };

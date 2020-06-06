@@ -7,43 +7,45 @@ export const mutations = {
     state.img = data;
   },
 
-  setLoginMessage(state, data) {
-    state.loginMessage = data;
-  },
-
-  setLoginSnackbar(state, data) {
-    state.loginSnackbar = data;
-  },
-
+  // login
   setLoginLoading(state, data) {
     state.loginLoading = data;
   },
-
-  setUpdateMessage(state, data) {
-    state.updateMessage = data;
+  setLoginSuccessMsg(state, data) {
+    state.loginSuccessMsg = data;
+  },
+  setLoginServerMsg(state, data) {
+    state.loginServerMsg = data;
+  },
+  setLoginErrorMsg(state, data) {
+    state.loginErrorMsg = data;
   },
 
-  setUpdateSnackbar(state, data) {
-    state.updateSnackbar = data;
-  },
-
+  // update
   setUpdateLoading(state, data) {
     state.updateLoading = data;
   },
-
-  setRegisterMessage(state, data) {
-    state.registerMessage = data;
+  setUpdateSuccessMsg(state, data) {
+    state.updateSuccessMsg = data;
+  },
+  setUpdateServerMsg(state, data) {
+    state.updateServerMsg = data;
+  },
+  setUpdateErrorMsg(state, data) {
+    state.updateErrorMsg = data;
   },
 
-  setRegisterSnackbar(state, data) {
-    state.registerSnackbar = data;
-  },
-
+  // register
   setRegisterLoading(state, data) {
     state.loading = data;
   },
-
-  setUnexpectedError(state, data) {
-    state.unexpectedError = data;
+  setRegisterSuccessMsg(state, data) {
+    state.registerSuccessMsg = data;
+  },
+  setRegisterServerMsg(state, data) {
+    state.registerServerMsg = data;
+  },
+  setRegisterErrorMsg(state, data) {
+    state.registerErrorMsg = data;
   },
 };

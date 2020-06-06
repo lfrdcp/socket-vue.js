@@ -1,10 +1,5 @@
 <template>
   <v-card class="elevation-24" shaped>
-    <Snackbar
-      v-bind:snackbar="updateSnackbar"
-      text="Se ha actualizado el usuario de manera correcta"
-      color="success"
-    />
     <v-toolbar dark>
       <v-toolbar-title>Editar datos</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -13,17 +8,26 @@
 
     <v-card-title class="justify-center"></v-card-title>
 
-    <v-container>
-      <Alert
-        color="warning"
-        :icono="icons.warning"
-        :texto="updateMessage"
-        v-if="updateMessage"
-      />
-    </v-container>
-
     <v-card-text>
       <v-form v-model="valid">
+        <Alert
+          color="success"
+          :icono="icons.check"
+          :texto="updateSuccessMsg"
+          v-if="updateSuccessMsg"
+        />
+        <Alert
+          color="warning"
+          :icono="icons.warning"
+          :texto="updateServerMsg"
+          v-if="updateServerMsg"
+        />
+        <Alert
+          color="error"
+          icono="error"
+          :texto="updateErrorMsg"
+          v-if="updateErrorMsg"
+        />
         <v-container>
           <v-row>
             <v-col cols="12" md="4">
@@ -133,7 +137,7 @@
       <v-btn
         block
         color="primary"
-        @click="updateUser"
+        @click="update"
         type="submit"
         :disabled="!valid"
         >Editar</v-btn
@@ -146,7 +150,6 @@
 import Alert from '../../alert/Alert';
 import DialogImageProfile from '../../dialog/DialogImageProfile';
 import ProgressLinear from '../../progressLinear/ProgressLinear';
-import Snackbar from '../../snackbar/Snackbar';
 import { rules } from '../../../utils/components/rules';
 import { mapState } from 'vuex';
 import { icons } from '../../../data/icons';
@@ -156,7 +159,6 @@ export default {
     Alert,
     ProgressLinear,
     DialogImageProfile,
-    Snackbar,
   },
   data: () => ({
     valid: true,
@@ -192,12 +194,17 @@ export default {
         'La contraseña no coincide'
       );
     },
-    ...mapState('user', ['updateLoading', 'updateMessage', 'updateSnackbar']),
+    ...mapState('user', [
+      'updateLoading',
+      'updateServerMsg',
+      'updateSuccessMsg',
+      'updateErrorMsg',
+    ]),
   },
   methods: {
-    updateUser() {
-      let params = { user: this.user, swtichs: this.swtichs };
-      this.$store.dispatch('user/updateUser', params);
+    update() {
+      let params = { user: this.user, switchs: this.swtichs };
+      this.$store.dispatch('user/update', params);
     },
   },
 };

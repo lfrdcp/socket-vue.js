@@ -14,6 +14,24 @@
           </v-container>
 
           <v-form v-model="valid">
+            <Alert
+              color="success"
+              :icono="icons.check"
+              :texto="registerSuccessMsg"
+              v-if="registerSuccessMsg"
+            />
+            <Alert
+              color="warning"
+              :icono="icons.warning"
+              :texto="loginServerMsg"
+              v-if="loginServerMsg"
+            />
+            <Alert
+              color="error"
+              icono="error"
+              :texto="loginErrorMsg"
+              v-if="loginErrorMsg"
+            />
             <v-text-field
               label="Correo "
               name="login"
@@ -39,24 +57,6 @@
               v-model="user.password"
             />
           </v-form>
-          <Alert
-            color="success"
-            :icono="icons.check"
-            texto="Registrado correctamente"
-            v-if="registerSnackbar"
-          />
-          <Alert
-            color="warning"
-            :icono="icons.warning"
-            :texto="loginMessage"
-            v-if="loginMessage"
-          />
-          <Alert
-            color="error"
-            icono="error"
-            :texto="unexpectedError"
-            v-if="unexpectedError"
-          />
 
           <ProgressLinear v-bind:loading="loginLoading" color="primary" />
         </v-card-text>
@@ -106,10 +106,10 @@ export default {
   }),
   computed: {
     ...mapState('user', [
-      'loginMessage',
       'loginLoading',
-      'unexpectedError',
-      'registerSnackbar',
+      'loginServerMsg',
+      'loginErrorMsg',
+      'registerSuccessMsg',
     ]),
   },
   methods: {

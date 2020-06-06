@@ -89,14 +89,14 @@
           <Alert
             color="error"
             icono="error"
-            :texto="unexpectedError"
-            v-if="unexpectedError"
+            :texto="registerErrorMsg"
+            v-if="registerErrorMsg"
           />
           <Alert
             color="warning"
             :icono="icons.warning"
-            :texto="registerMessage"
-            v-if="registerMessage"
+            :texto="registerServerMsg"
+            v-if="registerServerMsg"
           />
           <ProgressLinear v-bind:loading="registerLoading" color="primary" />
         </v-card-text>
@@ -159,8 +159,8 @@ export default {
     },
     ...mapState('user', [
       'registerLoading',
-      'registerMessage',
-      'unexpectedError',
+      'registerServerMsg',
+      'registerErrorMsg',
     ]),
   },
 

@@ -2,17 +2,18 @@ export const state = {
   user: {},
   img: 1,
 
-  unexpectedError: false,
-
   loginLoading: false,
-  loginSnackbar: false,
-  loginMessage: '',
+  loginSuccessMsg: false,
+  loginServerMsg: false,
+  loginErrorMsg: false,
 
-  updateSnackbar: false,
   updateLoading: false,
-  updateMessage: '',
+  updateSuccessMsg: false,
+  updateServerMsg: false,
+  updateErrorMsg: false,
 
-  registerMessage: '',
-  registerSnackbar: false,
   registerLoading: false,
+  registerSuccessMsg: false,
+  registerServerMsg: false,
+  registerErrorMsg: false,
 };

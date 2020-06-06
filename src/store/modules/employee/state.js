@@ -5,9 +5,8 @@ export const state = {
     { id: 3, email: 'santiago@gmail.com' },
   ],
 
-  employeeMessage: '',
-  employeeSnackbar: false,
-  employeeLoading: false,
-
-  unexpectedError: false,
+  createLoading: false,
+  createSuccessMsg: false,
+  createServerMsg: false,
+  createErrorMsg: false,
 };

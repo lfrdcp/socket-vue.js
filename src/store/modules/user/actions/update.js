@@ -12,11 +12,10 @@ const update = async ({ commit, state }, params) => {
   try {
     let response = await axios.post(
       URL + 'api/user/updateuser/' + state.user.id,
-
       JSON.stringify({ ...params })
     );
+
     console.log(response.data);
-    console.log(JSON.stringify({ ...params }));
     if (response.data.status === 'c8usu1') {
       commit('setUpdateSuccessMsg', successMsgUser.updated); // CÓDIGO CORRECTO ✅
       setTimeout(() => commit('setUpdateSuccessMsg', false), 10000);

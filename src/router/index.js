@@ -31,10 +31,11 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
+    axios.defaults.headers['Content-Type'] = 'application/json';
     axios.defaults.headers.common['Authorization'] = blog_token();
     try {
       await axios.get(URL + 'api/user/vtoken');
-      // console.log('verificarToken');
+
       next();
     } catch (error) {
       router.replace('/login');

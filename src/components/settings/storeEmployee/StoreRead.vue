@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <StoreCreate />
-    <StoreUpdate v-bind:update="update" />
-    <v-card class="elevation-24" shaped>
+    <StoreUpdate v-if="updateButton" />
+
+    <v-card class="elevation-24" shaped v-else>
       <v-toolbar dark>
         <v-toolbar-title>Tiendas</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -30,7 +31,7 @@
           </v-row>
         </v-list>
         <ButtonCircular
-          @click.native="update = !update"
+          @click.native="update()"
           color="orange"
           :icon="icons.update"
           link=""
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { arbol } from '../../../data/svg';
 import { icons } from '../../../data/icons';
 import SvgComponent from '../../svg/SvgComponent';
@@ -63,7 +65,14 @@ export default {
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],
     arbolsvg: arbol,
     icons: icons,
-    update: false,
   }),
+  computed: {
+    ...mapState('store', ['updateButton']),
+  },
+  methods: {
+    update() {
+      this.$store.dispatch('store/setUpUpdateButton');
+    },
+  },
 };
 </script>

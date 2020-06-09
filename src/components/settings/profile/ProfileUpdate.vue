@@ -31,7 +31,11 @@
         <v-container>
           <v-row>
             <v-col cols="12" md="4">
-              <v-switch v-model="swtichs.switchImg" label="Foto de perfil" />
+              <v-switch
+                inset
+                v-model="swtichs.switchImg"
+                label="Foto de perfil"
+              />
             </v-col>
 
             <v-col cols="12" md="4" v-if="swtichs.switchImg">
@@ -46,7 +50,10 @@
               ></v-select>
             </v-col>
             <v-col cols="12" md="4" v-if="swtichs.switchImg">
-              <DialogImageProfile v-if="swtichs.switchImgOption === 0" />
+              <v-container>
+                <DialogImageProfile v-if="swtichs.switchImgOption === 0" />
+              </v-container>
+
               <v-file-input
                 v-if="swtichs.switchImgOption === 1"
                 required
@@ -58,7 +65,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" md="4">
-              <v-switch v-model="swtichs.switchEmail" label="Correo" />
+              <v-switch inset v-model="swtichs.switchEmail" label="Correo" />
             </v-col>
             <v-col cols="12" md="8">
               <v-text-field
@@ -77,6 +84,7 @@
           <v-row>
             <v-col cols="12" md="4">
               <v-switch
+                inset
                 v-model="swtichs.switchVerifierCode"
                 label="Código de caja"
               />
@@ -97,7 +105,11 @@
           </v-row>
           <v-row>
             <v-col cols="12" md="4">
-              <v-switch v-model="swtichs.switchPassword" label="Contraseña" />
+              <v-switch
+                inset
+                v-model="swtichs.switchPassword"
+                label="Contraseña"
+              />
             </v-col>
             <v-col cols="12" md="4">
               <v-text-field

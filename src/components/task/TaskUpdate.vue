@@ -1,6 +1,11 @@
 <template>
   <v-container>
     <v-card class="elevation-24" shaped>
+      <v-toolbar dark>
+        <v-toolbar-title>Editar tarea</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-icon>{{ icons.task }} </v-icon>
+      </v-toolbar>
       <v-card-title>
         Editar tarea
       </v-card-title>
@@ -25,25 +30,24 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn
-          small
-          absolute
-          dark
-          fab
-          top
-          right
+        <ButtonCircular
+          tooltip="Editar"
           color="primary"
-          link
-          to="/inicio"
-        >
-          <v-icon>done</v-icon>
-        </v-btn>
+          :icon="icons.check"
+          link=""
+        />
       </v-card-actions>
     </v-card>
   </v-container>
 </template>
 <script>
+import { icons } from '../../data/icons';
+import ButtonCircular from '../button/ButtonCircular';
 export default {
   name: 'TaskUpdate',
+  data: () => ({ icons: icons }),
+  components: {
+    ButtonCircular,
+  },
 };
 </script>

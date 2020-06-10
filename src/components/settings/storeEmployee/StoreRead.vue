@@ -6,6 +6,7 @@
         <v-spacer></v-spacer>
         <v-icon>{{ icons.store }} </v-icon>
         <ButtonAbsolute
+          tooltip="Crear"
           @click.native="create()"
           color="primary"
           :icon="icons.create"
@@ -35,12 +36,18 @@
             </v-row>
           </v-list>
           <ButtonCircular
+            tooltip="Editar"
             @click.native="update()"
             color="orange"
             :icon="icons.update"
             link=""
           />
-          <ButtonCircular color="red" :icon="icons.delete" link="" />
+          <ButtonCircular
+            tooltip="Eliminar"
+            color="red"
+            :icon="icons.delete"
+            link=""
+          />
         </v-container>
       </v-card-text>
     </v-card>

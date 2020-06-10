@@ -36,6 +36,7 @@
         <v-col cols="3" md="1">
           <v-btn fab small :disabled="!valid">
             <ButtonCircular
+              tooltip="Crear"
               color="primary"
               :icon="icons.check"
               link=""

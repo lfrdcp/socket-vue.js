@@ -20,10 +20,11 @@
           <v-col class="text-end">
             <!-- <ButtonCircular color="orange" :icon="icons.update" link="" /> -->
             <ButtonCircular
+              @click.native="employeeDelete"
+              tooltip="Eliminar"
               color="red"
               :icon="icons.delete"
               link=""
-              @click.native="employeeDelete"
             />
           </v-col>
         </v-row>

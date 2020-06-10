@@ -9,7 +9,7 @@ import { URL } from '../data/url';
 import PageInicio from '../pages/PageInicio.vue';
 
 import sign from './modules/sign';
-import home from './modules/home';
+import task from './modules/task';
 import profile from './modules/profile';
 import storeEmployee from './modules/storeEmployee';
 
@@ -19,7 +19,7 @@ const routes = [
     path: '/inicio',
     component: PageInicio,
     meta: { requiresAuth: true },
-    children: [...home, ...profile, ...storeEmployee],
+    children: [...task, ...profile, ...storeEmployee],
   },
 ];
 

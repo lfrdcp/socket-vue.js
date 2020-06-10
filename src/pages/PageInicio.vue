@@ -4,7 +4,7 @@
       <v-tour name="myTour" :steps="steps" :options="myOptions"></v-tour>
       <Dashboard />
       <transition mode="out-in">
-        <router-view></router-view>
+        <router-view />
       </transition>
     </v-container>
   </v-content>

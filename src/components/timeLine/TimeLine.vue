@@ -12,11 +12,7 @@
       </v-card-text>
 
       <v-card-actions>
-        <ButtonCircular
-          color="orange"
-          :icon="icons.update"
-          :link="`/inicio/editTask/` + id"
-        />
+        <ButtonCircular color="orange" :icon="icons.update" link="" />
         <ButtonCircular color="red" :icon="icons.delete" link="" />
       </v-card-actions>
     </v-card>

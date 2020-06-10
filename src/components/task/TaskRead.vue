@@ -5,9 +5,7 @@
         <v-toolbar-title>Tareas para hoy</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-icon>{{ icons.task }} </v-icon>
-        <v-btn color="primary" dark small absolute bottom left fab>
-          <v-icon>{{ icons.create }} </v-icon>
-        </v-btn>
+        <ButtonAbsolute color="primary" :icon="icons.create" />
       </v-toolbar>
       <v-card-text>
         <v-timeline :dense="$vuetify.breakpoint.smAndDown">
@@ -33,11 +31,13 @@
 <script>
 import TimeLine from '../timeLine/TimeLine';
 import { icons } from '../../data/icons';
+import ButtonAbsolute from '../button/ButtonAbsolute';
 export default {
   name: 'TaskRead',
   data: () => ({ icons: icons }),
   components: {
     TimeLine,
+    ButtonAbsolute,
   },
 };
 </script>

@@ -10,9 +10,8 @@
 
     <v-row cols="12" sm="8" md="4">
       <v-col>
-        <transition mode="out-in">
-          <router-view />
-        </transition>
+        <TaskRead />
+        <TaskUpdate />
       </v-col>
       <v-col>
         <v-card class="elevation-24" shaped>
@@ -30,13 +29,18 @@
   </v-container>
 </template>
 <script>
-import Calendar from '../calendar/Calendar';
-import { icons } from '../../data/icons';
+import Calendar from '../components/calendar/Calendar';
+import TaskRead from '../components/task/TaskRead';
+import TaskUpdate from '../components/task/TaskUpdate';
+import { icons } from '../data/icons';
+
 export default {
   name: 'Home',
   data: () => ({ time: '', date: '', icons: icons }),
   components: {
     Calendar,
+    TaskRead,
+    TaskUpdate,
   },
   created() {
     setInterval(this.getNow, 1000);

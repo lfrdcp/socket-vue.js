@@ -5,19 +5,11 @@
         <v-toolbar-title>Tiendas</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-icon>{{ icons.store }} </v-icon>
-
-        <v-btn
-          @click="create()"
+        <ButtonAbsolute
+          @click.native="create()"
           color="primary"
-          dark
-          small
-          absolute
-          bottom
-          left
-          fab
-        >
-          <v-icon>{{ icons.create }} </v-icon>
-        </v-btn>
+          :icon="icons.create"
+        />
       </v-toolbar>
 
       <v-card-text>
@@ -61,6 +53,7 @@ import { icons } from '../../../data/icons';
 import SvgComponent from '../../svg/SvgComponent';
 import ButtonCircular from '../../button/ButtonCircular';
 import ListItem from '../../listItem/ListItem';
+import ButtonAbsolute from '../../button/ButtonAbsolute';
 
 export default {
   name: 'StoreRead',
@@ -68,6 +61,7 @@ export default {
     SvgComponent,
     ButtonCircular,
     ListItem,
+    ButtonAbsolute,
   },
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],

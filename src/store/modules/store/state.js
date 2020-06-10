@@ -5,12 +5,13 @@ export const state = {
     { id: 3, email: 'santiago@gmail.com' },
   ],
 
+  CRUDButton: 'R',
+
   createLoading: false,
   createSuccessMsg: false,
   createServerMsg: false,
   createErrorMsg: false,
 
-  updateButton: false,
   updateLoading: false,
   updateSuccessMsg: false,
   updateServerMsg: false,

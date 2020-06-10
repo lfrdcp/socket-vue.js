@@ -1,9 +1,18 @@
 <template>
-  <h1>Crear tienda</h1>
+  <v-card>
+    <h1>crear tienda</h1>
+    <v-btn small @click="create()">Normal</v-btn>
+  </v-card>
 </template>
 
 <script>
 export default {
-  name: 'StoreCreate',
+  name: 'StoreUpdate',
+
+  methods: {
+    create() {
+      this.$store.dispatch('store/setUpCRUDButton', 'R');
+    },
+  },
 };
 </script>

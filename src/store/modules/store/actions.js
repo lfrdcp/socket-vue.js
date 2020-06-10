@@ -1,5 +1,5 @@
-import setUpUpdateButton from './actions/setUpUpdateButton';
+import setUpCRUDButton from './actions/setUpCRUDButton';
 
 export const actions = {
-  setUpUpdateButton,
+  setUpCRUDButton,
 };

@@ -1,4 +1,8 @@
 export const mutations = {
+  setCRUDButton(state, data) {
+    state.CRUDButton = data;
+  },
+
   // create
   setCreateLoading(state, data) {
     state.createLoading = data;
@@ -17,9 +21,7 @@ export const mutations = {
   },
 
   // update
-  setUpdateButton(state) {
-    state.updateButton = !state.updateButton;
-  },
+
   setUpdateLoading(state, data) {
     state.updateLoading = data;
   },

@@ -1,14 +1,26 @@
 <template>
   <v-container>
-    <StoreCreate />
-    <transition>
-      <StoreUpdate v-if="updateButton" />
-
-      <v-card class="elevation-24" shaped v-else>
+    <transition mode="out-in">
+      <StoreUpdate v-if="CRUDButton === 'U'" />
+      <StoreCreate v-if="CRUDButton === 'C'" />
+      <v-card class="elevation-24" shaped v-else-if="CRUDButton === 'R'">
         <v-toolbar dark>
           <v-toolbar-title>Tiendas</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-icon>{{ icons.store }} </v-icon>
+
+          <v-btn
+            @click="create()"
+            color="primary"
+            dark
+            small
+            absolute
+            bottom
+            left
+            fab
+          >
+            <v-icon>{{ icons.create }} </v-icon>
+          </v-btn>
         </v-toolbar>
 
         <v-card-text>
@@ -69,11 +81,14 @@ export default {
     icons: icons,
   }),
   computed: {
-    ...mapState('store', ['updateButton']),
+    ...mapState('store', ['CRUDButton']),
   },
   methods: {
     update() {
-      this.$store.dispatch('store/setUpUpdateButton');
+      this.$store.dispatch('store/setUpCRUDButton', 'U');
+    },
+    create() {
+      this.$store.dispatch('store/setUpCRUDButton', 'C');
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="update">
+  <v-card>
     <h1>actualizar tiendas</h1>
     <v-btn small @click="update()">Normal</v-btn>
   </v-card>
@@ -11,7 +11,7 @@ export default {
 
   methods: {
     update() {
-      this.$store.dispatch('store/setUpUpdateButton');
+      this.$store.dispatch('store/setUpCRUDButton', 'R');
     },
   },
 };

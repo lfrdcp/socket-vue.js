@@ -1,30 +1,29 @@
 <template>
   <v-container>
-    <transition mode="out-in">
-      <StoreUpdate v-if="CRUDButton === 'U'" />
-      <StoreCreate v-if="CRUDButton === 'C'" />
-      <v-card class="elevation-24" shaped v-else-if="CRUDButton === 'R'">
-        <v-toolbar dark>
-          <v-toolbar-title>Tiendas</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-icon>{{ icons.store }} </v-icon>
+    <v-card class="elevation-24" shaped>
+      <v-toolbar dark>
+        <v-toolbar-title>Tiendas</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-icon>{{ icons.store }} </v-icon>
 
-          <v-btn
-            @click="create()"
-            color="primary"
-            dark
-            small
-            absolute
-            bottom
-            left
-            fab
-          >
-            <v-icon>{{ icons.create }} </v-icon>
-          </v-btn>
-        </v-toolbar>
+        <v-btn
+          @click="create()"
+          color="primary"
+          dark
+          small
+          absolute
+          bottom
+          left
+          fab
+        >
+          <v-icon>{{ icons.create }} </v-icon>
+        </v-btn>
+      </v-toolbar>
 
-        <v-card-text>
+      <v-card-text>
+        <v-container>
           <v-select :items="items" label="Seleccione una tienda" outlined />
+
           <h3>Tienda 1</h3>
           <SvgComponent :content="arbolsvg" />
           <v-list two-line>
@@ -50,21 +49,18 @@
             link=""
           />
           <ButtonCircular color="red" :icon="icons.delete" link="" />
-        </v-card-text>
-      </v-card>
-    </transition>
+        </v-container>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { arbol } from '../../../data/svg';
 import { icons } from '../../../data/icons';
 import SvgComponent from '../../svg/SvgComponent';
 import ButtonCircular from '../../button/ButtonCircular';
 import ListItem from '../../listItem/ListItem';
-import StoreCreate from './StoreCreate';
-import StoreUpdate from './StoreUpdate';
 
 export default {
   name: 'StoreRead',
@@ -72,17 +68,13 @@ export default {
     SvgComponent,
     ButtonCircular,
     ListItem,
-    StoreCreate,
-    StoreUpdate,
   },
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],
     arbolsvg: arbol,
     icons: icons,
   }),
-  computed: {
-    ...mapState('store', ['CRUDButton']),
-  },
+
   methods: {
     update() {
       this.$store.dispatch('store/setUpCRUDButton', 'U');

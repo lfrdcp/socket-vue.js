@@ -10,8 +10,10 @@
 
     <v-row cols="12" sm="8" md="4">
       <v-col>
-        <TaskRead />
-        <TaskUpdate />
+        <transition mode="out-in">
+          <TaskRead v-if="CRUDButton === 'R'" />
+          <TaskUpdate v-else-if="CRUDButton === 'U'" />
+        </transition>
       </v-col>
       <v-col>
         <v-card class="elevation-24" shaped>
@@ -29,6 +31,7 @@
   </v-container>
 </template>
 <script>
+import { mapState } from 'vuex';
 import Calendar from '../components/calendar/Calendar';
 import TaskRead from '../components/task/TaskRead';
 import TaskUpdate from '../components/task/TaskUpdate';
@@ -45,27 +48,15 @@ export default {
   created() {
     setInterval(this.getNow, 1000);
   },
-  methods: {
-    getNow: function() {
-      const today = new Date();
-      const date =
-        today.getFullYear() +
-        '-' +
-        (today.getMonth() + 1) +
-        '-' +
-        today.getDate();
-      const time =
-        today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-      this.time = time;
-      this.date = date;
-    },
+  computed: {
+    ...mapState('task', ['CRUDButton']),
   },
 };
 </script>
 <style>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.1s;
 }
 .v-enter,
 .v-leave-to {

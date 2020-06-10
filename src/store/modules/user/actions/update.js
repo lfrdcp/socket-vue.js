@@ -18,6 +18,7 @@ const update = async ({ commit, state }, params) => {
     console.log(response.data);
     if (response.data.status === 'c8usu1') {
       commit('setUpdateSuccessMsg', successMsgUser.updated); // CÓDIGO CORRECTO ✅
+
       setTimeout(() => commit('setUpdateSuccessMsg', false), 10000);
     } else if (response.data.status === '1F4usu1') {
       commit('setUpdateServerMsg', errorMsgUser.updateServer); // CÓDIGO ERRONEO DE LÓGICA 🔥

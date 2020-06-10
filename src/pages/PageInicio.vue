@@ -34,7 +34,7 @@ export default {
 <style>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.1s;
 }
 .v-enter,
 .v-leave-to {

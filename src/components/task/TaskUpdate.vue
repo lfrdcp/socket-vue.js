@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-card class="elevation-24" shaped>
-      <v-toolbar dark>
+      <v-toolbar color="orange" dark>
         <v-toolbar-title>Editar tarea</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-icon>{{ icons.task }} </v-icon>
@@ -31,6 +31,7 @@
       </v-card-text>
       <v-card-actions>
         <ButtonCircular
+          @click.native="update()"
           tooltip="Editar"
           color="primary"
           :icon="icons.check"
@@ -45,9 +46,17 @@ import { icons } from '../../data/icons';
 import ButtonCircular from '../button/ButtonCircular';
 export default {
   name: 'TaskUpdate',
-  data: () => ({ icons: icons }),
+  data: () => ({
+    valid: false,
+    icons: icons,
+  }),
   components: {
     ButtonCircular,
+  },
+  methods: {
+    update() {
+      this.$store.dispatch('task/setUpCRUDButton', 'R');
+    },
   },
 };
 </script>

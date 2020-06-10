@@ -50,3 +50,13 @@ export default {
   },
 };
 </script>
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.1s;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

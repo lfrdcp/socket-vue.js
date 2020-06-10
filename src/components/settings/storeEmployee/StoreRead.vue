@@ -35,21 +35,23 @@
               </v-col>
             </v-row>
           </v-list>
-          <ButtonCircular
-            tooltip="Editar"
-            @click.native="update()"
-            color="orange"
-            :icon="icons.update"
-            link=""
-          />
-          <ButtonCircular
-            tooltip="Eliminar"
-            color="red"
-            :icon="icons.delete"
-            link=""
-          />
         </v-container>
       </v-card-text>
+      <v-card-actions>
+        <ButtonCircular
+          tooltip="Editar"
+          @click.native="update()"
+          color="orange"
+          :icon="icons.update"
+          link=""
+        />
+        <ButtonCircular
+          tooltip="Eliminar"
+          color="red"
+          :icon="icons.delete"
+          link=""
+        />
+      </v-card-actions>
     </v-card>
   </v-container>
 </template>

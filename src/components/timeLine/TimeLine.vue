@@ -13,6 +13,7 @@
 
       <v-card-actions>
         <ButtonCircular
+          @click.native="update()"
           tooltip="Editar"
           color="orange"
           :icon="icons.update"
@@ -40,6 +41,11 @@ export default {
   data: () => ({
     icons: icons,
   }),
+  methods: {
+    update() {
+      this.$store.dispatch('task/setUpCRUDButton', 'U');
+    },
+  },
 };
 </script>
 

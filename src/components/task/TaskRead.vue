@@ -5,7 +5,12 @@
         <v-toolbar-title>Tareas para hoy</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-icon>{{ icons.task }} </v-icon>
-        <ButtonAbsolute tooltip="Crear" color="primary" :icon="icons.create" />
+        <ButtonAbsolute
+          @click.native="create()"
+          tooltip="Crear"
+          color="primary"
+          :icon="icons.create"
+        />
       </v-toolbar>
       <v-card-text>
         <v-timeline :dense="$vuetify.breakpoint.smAndDown">
@@ -38,6 +43,11 @@ export default {
   components: {
     TimeLine,
     ButtonAbsolute,
+  },
+  methods: {
+    create() {
+      this.$store.dispatch('task/setUpCRUDButton', 'C');
+    },
   },
 };
 </script>

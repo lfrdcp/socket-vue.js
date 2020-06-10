@@ -1,5 +1,5 @@
 export const state = {
-  stores: [],
+  tasks: [],
 
   CRUDButton: 'R',
 

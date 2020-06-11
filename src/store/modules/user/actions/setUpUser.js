@@ -7,7 +7,15 @@ const setUpUser = async ({ commit }) => {
     let response = await axios.get(URL + 'api/user/current');
     commit('setUser', response.data.user); // RESPUESTA CORRECTAS ✅
   } catch (error) {
-    commit('setUnexpectedError', errorMsgUser.setUpUser500); // ERROR EN EL SERVIDOR 🔥
+    // ERROR EN EL SERVIDOR 🔥
+    if (error.response.status === 404) {
+      commit('setUserErrorMsg', errorMsgUser.setUpUser404);
+    } else if (error.response.status === 500) {
+      commit('setUserErrorMsg', errorMsgUser.setUpUser500);
+    } else {
+      commit('setUserErrorMsg', errorMsgUser.setUpUserUn);
+    }
+    setTimeout(() => commit('setUserErrorMsg', ''), 10000);
   }
 };
 

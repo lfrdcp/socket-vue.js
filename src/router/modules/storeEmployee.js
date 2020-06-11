@@ -4,5 +4,6 @@ export default [
   {
     path: '/storeEmployee',
     component: PageStoreEmployee,
+    name: 'storeEmployee',
   },
 ];

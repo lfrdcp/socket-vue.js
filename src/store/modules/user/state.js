@@ -1,5 +1,8 @@
 export const state = {
   user: {},
+  userServerMsg: false,
+  userErrorMsg: false,
+
   img: 1,
 
   loginLoading: false,

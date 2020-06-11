@@ -20,7 +20,6 @@
   </v-container>
 </template>
 <script>
-import { mapState } from 'vuex';
 import ProfileRead from '../components/settings/profile/ProfileRead';
 import ProfileUpdate from '../components/settings/profile/ProfileUpdate';
 import { icons } from '../data/icons';
@@ -28,10 +27,5 @@ export default {
   name: 'PageSettings',
   data: () => ({ icons: icons }),
   components: { ProfileRead, ProfileUpdate },
-  computed: {
-    ...mapState('currentUser', ['user']),
-  },
-  created() {},
-  methods: {},
 };
 </script>

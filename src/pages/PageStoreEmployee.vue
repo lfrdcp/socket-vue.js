@@ -12,13 +12,11 @@
 
     <v-row cols="12" sm="8" md="4">
       <v-col>
-        <v-container>
-          <transition mode="out-in">
-            <StoreCreate v-if="CRUDButton === 'C'" />
-            <StoreRead v-else-if="CRUDButton === 'R'" />
-            <StoreUpdate v-else-if="CRUDButton === 'U'" />
-          </transition>
-        </v-container>
+        <transition mode="out-in">
+          <StoreCreate v-if="CRUDButton === 'C'" />
+          <StoreRead v-else-if="CRUDButton === 'R'" />
+          <StoreUpdate v-else-if="CRUDButton === 'U'" />
+        </transition>
       </v-col>
 
       <v-col>

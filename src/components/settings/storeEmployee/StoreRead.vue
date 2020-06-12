@@ -1,59 +1,57 @@
 <template>
-  <v-container>
-    <v-card class="elevation-24" shaped>
-      <v-toolbar dark>
-        <v-toolbar-title>Tiendas</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-icon>{{ icons.store }} </v-icon>
-        <ButtonAbsolute
-          tooltip="Crear"
-          @click.native="create()"
-          color="primary"
-          :icon="icons.create"
-        />
-      </v-toolbar>
+  <v-card class="elevation-24" shaped>
+    <v-toolbar dark>
+      <v-toolbar-title>Tiendas</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-icon>{{ icons.store }} </v-icon>
+      <ButtonAbsolute
+        tooltip="Crear"
+        @click.native="create()"
+        color="primary"
+        :icon="icons.create"
+      />
+    </v-toolbar>
 
-      <v-card-text>
-        <v-container>
-          <v-select :items="items" label="Seleccione una tienda" outlined />
+    <v-card-text>
+      <v-container>
+        <v-select :items="items" label="Seleccione una tienda" outlined />
 
-          <h3>Tienda 1</h3>
-          <SvgComponent :content="arbolsvg" />
-          <v-list two-line>
-            <ListItem :icon="icons.location" title="Dirección" />
-            <v-divider inset />
-            <v-row>
-              <v-col>
-                <ListItem title="Zempoala" subtitle="Calle" />
-                <ListItem title="30" subtitle="No. interior" />
-                <ListItem title="25" subtitle="No. exterior" />
-              </v-col>
-              <v-col>
-                <ListItem title="Flor" subtitle="Colonia" />
-                <ListItem title="Cuernavaca" subtitle="Ciudad" />
-                <ListItem title="Morelos" subtitle="Estado" />
-              </v-col>
-            </v-row>
-          </v-list>
-        </v-container>
-      </v-card-text>
-      <v-card-actions>
-        <ButtonCircular
-          tooltip="Editar"
-          @click.native="update()"
-          color="orange"
-          :icon="icons.update"
-          link=""
-        />
-        <ButtonCircular
-          tooltip="Eliminar"
-          color="red"
-          :icon="icons.delete"
-          link=""
-        />
-      </v-card-actions>
-    </v-card>
-  </v-container>
+        <h3>Tienda 1</h3>
+        <SvgComponent :content="arbolsvg" />
+        <v-list two-line>
+          <ListItem :icon="icons.location" title="Dirección" />
+          <v-divider inset />
+          <v-row>
+            <v-col>
+              <ListItem title="Zempoala" subtitle="Calle" />
+              <ListItem title="30" subtitle="No. interior" />
+              <ListItem title="25" subtitle="No. exterior" />
+            </v-col>
+            <v-col>
+              <ListItem title="Flor" subtitle="Colonia" />
+              <ListItem title="Cuernavaca" subtitle="Ciudad" />
+              <ListItem title="Morelos" subtitle="Estado" />
+            </v-col>
+          </v-row>
+        </v-list>
+      </v-container>
+    </v-card-text>
+    <v-card-actions>
+      <ButtonCircular
+        tooltip="Editar"
+        @click.native="update()"
+        color="orange"
+        :icon="icons.update"
+        link=""
+      />
+      <ButtonCircular
+        tooltip="Eliminar"
+        color="red"
+        :icon="icons.delete"
+        link=""
+      />
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>

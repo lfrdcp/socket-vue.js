@@ -51,6 +51,7 @@
               :prepend-icon="icons.password"
               type="password"
               outlined
+              autocomplete="on"
               color="primary"
               required
               :rules="passwordRules"

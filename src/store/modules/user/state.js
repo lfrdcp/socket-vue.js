@@ -5,11 +5,6 @@ export const state = {
 
   img: 1,
 
-  loginLoading: false,
-  loginSuccessMsg: false,
-  loginServerMsg: false,
-  loginErrorMsg: false,
-
   updateLoading: false,
   updateSuccessMsg: false,
   updateServerMsg: false,

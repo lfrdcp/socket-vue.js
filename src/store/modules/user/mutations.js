@@ -13,20 +13,6 @@ export const mutations = {
     state.img = data;
   },
 
-  // login
-  setLoginLoading(state, data) {
-    state.loginLoading = data;
-  },
-  setLoginSuccessMsg(state, data) {
-    state.loginSuccessMsg = data;
-  },
-  setLoginServerMsg(state, data) {
-    state.loginServerMsg = data;
-  },
-  setLoginErrorMsg(state, data) {
-    state.loginErrorMsg = data;
-  },
-
   // update
   setUpdateLoading(state, data) {
     state.updateLoading = data;

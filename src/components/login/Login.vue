@@ -87,6 +87,12 @@ import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
 import LoginSVG from '../../assets/img/Login.svg';
 import { icons } from '../../data/icons';
+
+import axios from 'axios';
+import router from '../../router/index';
+import { URL } from '../../data/url';
+import { errorMsgUser } from '../../data/errors';
+
 export default {
   name: 'Login',
   components: {
@@ -96,6 +102,11 @@ export default {
     LoginSVG,
   },
   data: () => ({
+    loginLoading: false,
+    loginSuccessMsg: false,
+    loginServerMsg: false,
+    loginErrorMsg: false,
+
     valid: true,
     passwordRules: [rules.minimumEight],
     emailRules: [rules.empty, rules.email],
@@ -106,16 +117,35 @@ export default {
     },
   }),
   computed: {
-    ...mapState('user', [
-      'loginLoading',
-      'loginServerMsg',
-      'loginErrorMsg',
-      'registerSuccessMsg',
-    ]),
+    ...mapState('user', ['registerSuccessMsg']),
   },
   methods: {
-    login() {
-      this.$store.dispatch('user/login', this.user);
+    async login() {
+      this.loginLoading = true;
+      try {
+        let response = await axios.post(URL + 'api/user/login', this.user);
+        if (response.data.access_token) {
+          // CREDENCIALES CORRECTAS ✅
+          localStorage.setItem('blog_token', response.data.access_token);
+          router.push('/inicio');
+        } else {
+          // CREDENCIALES INCORRECTAS ❌
+          this.loginServerMsg = response.data.message;
+          setTimeout(() => (this.loginServerMsg = ''), 10000);
+        }
+      } catch (error) {
+        // ERROR EN EL SERVIDOR 🔥
+        if (error.response.status === 404) {
+          this.loginErrorMsg = errorMsgUser.login404;
+        } else if (error.response.status === 500) {
+          this.loginErrorMsg = errorMsgUser.login500;
+        } else {
+          this.loginErrorMsg = errorMsgUser.loginUn;
+        }
+        setTimeout(() => (this.loginErrorMsg = ''), 10000);
+      } finally {
+        this.loginLoading = false;
+      }
     },
   },
 };

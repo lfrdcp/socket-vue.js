@@ -1,11 +1,11 @@
 import logout from './actions/logout';
-import register from './actions/register';
+import setUpRegisterSuccessMsg from './actions/setUpRegisterSuccessMsg';
 import setUpImg from './actions/setUpImg';
 import setUpUser from './actions/setUpUser';
 import update from './actions/update';
 export const actions = {
   logout,
-  register,
+  setUpRegisterSuccessMsg,
   setUpImg,
   setUpUser,
   update,

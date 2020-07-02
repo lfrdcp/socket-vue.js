@@ -118,14 +118,21 @@
     </v-col>
   </v-row>
 </template>
+
 <script>
 import DialogHelpSign from '../dialog/DialogHelpSign';
 import Alert from '../alert/Alert';
 import ProgressLinear from '../progressLinear/ProgressLinear';
 import { rules } from '../../utils/components/rules';
-import { mapState } from 'vuex';
 import RegisterSVG from '../../assets/img/Register.svg';
 import { icons } from '../../data/icons';
+
+import axios from 'axios';
+import router from '../../router/index';
+import { URL } from '../../data/url';
+import { convertObjectErrors } from '../../utils/convertObjectErrors';
+import { errorMsgUser } from '../../data/errors';
+
 export default {
   name: 'Register',
   components: {
@@ -135,6 +142,10 @@ export default {
     RegisterSVG,
   },
   data: () => ({
+    registerLoading: false,
+    registerServerMsg: false,
+    registerErrorMsg: false,
+
     valid: true,
     user: {
       name: '',
@@ -157,16 +168,37 @@ export default {
         'La contraseña no coincide'
       );
     },
-    ...mapState('user', [
-      'registerLoading',
-      'registerServerMsg',
-      'registerErrorMsg',
-    ]),
   },
 
   methods: {
-    register() {
-      this.$store.dispatch('user/register', this.user);
+    async register() {
+      this.registerLoading = true;
+      try {
+        let response = await axios.post(URL + 'api/user/register', this.user);
+        if (response.data.status === 'c8usu0') {
+          this.$store.dispatch('user/setUpRegisterSuccessMsg');
+          router.push('/login');
+        } else if (response.data.status === '1F4usu0') {
+          // CÓDIGO ERRONEO DE LÓGICA 🔥
+          this.registerServerMsg = errorMsgUser.registerServer;
+        } else if (response.data.errors) {
+          // CREDENCIALES INCORRECTAS ❌
+          let errors = convertObjectErrors(response.data.errors);
+          this.registerServerMsg = errors;
+        }
+      } catch (error) {
+        // ERROR EN EL SERVIDOR 🔥
+        if (error.response.status === 404) {
+          this.registerErrorMsg = errorMsgUser.register404;
+        } else if (error.response.status === 500) {
+          this.registerErrorMsg = errorMsgUser.register500;
+        } else {
+          this.registerErrorMsg = errorMsgUser.registerUn;
+        }
+        setTimeout(() => (this.registerErrorMsg = ''), 10000);
+      } finally {
+        this.registerLoading = false;
+      }
     },
   },
 };

@@ -28,16 +28,7 @@ export const mutations = {
   },
 
   // register
-  setRegisterLoading(state, data) {
-    state.loading = data;
-  },
   setRegisterSuccessMsg(state, data) {
     state.registerSuccessMsg = data;
-  },
-  setRegisterServerMsg(state, data) {
-    state.registerServerMsg = data;
-  },
-  setRegisterErrorMsg(state, data) {
-    state.registerErrorMsg = data;
   },
 };

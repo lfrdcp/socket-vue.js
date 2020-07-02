@@ -10,8 +10,5 @@ export const state = {
   updateServerMsg: false,
   updateErrorMsg: false,
 
-  registerLoading: false,
   registerSuccessMsg: false,
-  registerServerMsg: false,
-  registerErrorMsg: false,
 };

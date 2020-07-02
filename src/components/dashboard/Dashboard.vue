@@ -76,6 +76,8 @@ import ListItemSingle from './ListItemSingle';
 import ListItemGroup from './ListItemGroup';
 import Notification from '../notification/Notification';
 import { icons } from '../../data/icons';
+
+import router from '../../router/index';
 export default {
   name: 'Dashboard',
   data: () => ({ icons: icons, drawer: null, time: '', date: '' }),
@@ -95,7 +97,8 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('user/logout');
+      localStorage.removeItem('blog_token');
+      router.push('/login');
     },
   },
 };

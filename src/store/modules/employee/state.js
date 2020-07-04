@@ -1,12 +1,7 @@
 export const state = {
   employees: [
-    { id: 1, email: 'alfredo@gmail.com' },
-    { id: 2, email: 'alejandro@gmail.com' },
-    { id: 3, email: 'santiago@gmail.com' },
+    { id: 1, email: 'cris@gmail.com' },
+    { id: 2, email: 'evan@gmail.com' },
+    { id: 3, email: 'jair@gmail.com' },
   ],
-
-  createLoading: false,
-  createSuccessMsg: false,
-  createServerMsg: false,
-  createErrorMsg: false,
 };

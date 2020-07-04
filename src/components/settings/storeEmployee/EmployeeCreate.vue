@@ -51,21 +51,33 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { rules } from '../../../utils/components/rules';
 import { icons } from '../../../data/icons';
 import ButtonCircular from '../../button/ButtonCircular';
-
 import Alert from '../../alert/Alert';
 import ProgressLinear from '../../progressLinear/ProgressLinear';
+
+import axios from 'axios';
+import { URL } from '../../../data/url';
+import { convertObjectErrors } from '../../../utils/convertObjectErrors';
+import { errorMsgEmployee } from '../../../data/errors';
+import { successMsgEmployee } from '../../../data/sucess';
+
 export default {
   name: 'EmployeeCreate',
+
   components: {
     ButtonCircular,
     Alert,
     ProgressLinear,
   },
+
   data: () => ({
+    createLoading: false,
+    createSuccessMsg: false,
+    createServerMsg: false,
+    createErrorMsg: false,
+
     valid: true,
     icons: icons,
     emailRules: [rules.empty, rules.email],
@@ -74,17 +86,38 @@ export default {
       email: '',
     },
   }),
-  computed: {
-    ...mapState('employee', [
-      'createLoading',
-      'createServerMsg',
-      'createSuccessMsg',
-      'createErrorMsg',
-    ]),
-  },
+
   methods: {
-    employeeCreate() {
-      this.$store.dispatch('employee/create', this.employee);
+    async employeeCreate() {
+      this.createLoading = true;
+      try {
+        let response = await axios.post(
+          URL + 'api/user/employee',
+          this.employee
+        );
+        if (response.data.status === '') {
+          this.$store.dispatch('employee/addEmployee', this.employee);
+          this.createSuccessMsg = successMsgEmployee.created; // CÓDIGO CORRECTO ✅
+          setTimeout(() => (this.createSuccessMsg = false), 10000);
+        } else if (response.data.status === '1F4usu0') {
+          this.createServerMsg = errorMsgEmployee.createServer; // CÓDIGO ERRONEO DE LÓGICA 🔥
+        } else if (response.data.errors) {
+          let errors = convertObjectErrors(response.data.errors); // CREDENCIALES INCORRECTAS ❌
+          this.createServerMsg = errors;
+        }
+      } catch (error) {
+        // ERROR EN EL SERVIDOR 🔥
+        if (error.response.status === 404) {
+          this.createErrorMsg = errorMsgEmployee.create404;
+        } else if (error.response.status === 500) {
+          this.createErrorMsg = errorMsgEmployee.create500;
+        } else {
+          this.createErrorMsg = errorMsgEmployee.createUn;
+        }
+        setTimeout(() => (this.createErrorMsg = ''), 10000);
+      } finally {
+        this.createLoading = false;
+      }
     },
   },
 };

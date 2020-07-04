@@ -1,5 +1,5 @@
-import create from './actions/create';
+import addEmployee from './actions/addEmployee';
 
 export const actions = {
-  create,
+  addEmployee,
 };

@@ -3,12 +3,7 @@ export const state = {
   userServerMsg: false,
   userErrorMsg: false,
 
-  img: 1,
-
-  updateLoading: false,
-  updateSuccessMsg: false,
-  updateServerMsg: false,
-  updateErrorMsg: false,
-
   registerSuccessMsg: false,
+
+  img: 1,
 };

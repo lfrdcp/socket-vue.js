@@ -163,16 +163,30 @@ import Alert from '../../alert/Alert';
 import DialogImageProfile from '../../dialog/DialogImageProfile';
 import ProgressLinear from '../../progressLinear/ProgressLinear';
 import { rules } from '../../../utils/components/rules';
-import { mapState } from 'vuex';
 import { icons } from '../../../data/icons';
+import { mapState } from 'vuex';
+
+import axios from 'axios';
+import { URL } from '../../../data/url';
+import { convertObjectErrors } from '../../../utils/convertObjectErrors';
+import { errorMsgUser } from '../../../data/errors';
+import { successMsgUser } from '../../../data/sucess';
+
 export default {
   name: 'PersonalEdit',
+
   components: {
     Alert,
     ProgressLinear,
     DialogImageProfile,
   },
+
   data: () => ({
+    updateLoading: false,
+    updateSuccessMsg: false,
+    updateServerMsg: false,
+    updateErrorMsg: false,
+
     valid: true,
     icons: icons,
     passwordRules: [rules.empty, rules.minimumEight],
@@ -199,6 +213,7 @@ export default {
       confirmPassword: '',
     },
   }),
+
   computed: {
     passwordMatch() {
       return (
@@ -206,17 +221,42 @@ export default {
         'La contraseña no coincide'
       );
     },
-    ...mapState('user', [
-      'updateLoading',
-      'updateServerMsg',
-      'updateSuccessMsg',
-      'updateErrorMsg',
-    ]),
+    ...mapState('user', ['user']),
   },
+
   methods: {
-    update() {
+    async update() {
       let params = { user: this.user, switchs: this.swtichs };
-      this.$store.dispatch('user/update', params);
+      this.updateLoading = true;
+      try {
+        let response = await axios.post(
+          URL + 'api/user/updateuser/' + this.$store.state.user.user.id,
+          JSON.stringify({ ...params })
+        );
+        if (response.data.status === 'c8usu1') {
+          this.updateSuccessMsg = successMsgUser.updated; // CÓDIGO CORRECTO ✅
+          await this.$store.dispatch('user/setUpUser'); // SE ACTUALIZA OBJETO USER
+          setTimeout(() => (this.updateSuccessMsg = false), 10000);
+        } else if (response.data.status === '1F4usu1') {
+          this.updateServerMsg = errorMsgUser.updateServer; // CÓDIGO ERRONEO DE LÓGICA 🔥
+        } else if (response.data.errors) {
+          let errors = convertObjectErrors(response.data.errors); // CREDENCIALES INCORRECTAS ❌
+          this.updateServerMsg = errors;
+        }
+      } catch (error) {
+        // ERROR EN EL SERVIDOR 🔥
+        console.log(error.response);
+        if (error.response.status === 404) {
+          this.updateErrorMsg = errorMsgUser.update404;
+        } else if (error.response.status === 500) {
+          this.updateErrorMsg = errorMsgUser.update500;
+        } else {
+          this.updateErrorMsg = errorMsgUser.updateUn;
+        }
+        setTimeout(() => (this.updateErrorMsg = ''), 10000);
+      } finally {
+        this.updateLoading = false;
+      }
     },
   },
 };

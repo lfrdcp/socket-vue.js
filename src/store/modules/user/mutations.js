@@ -13,20 +13,6 @@ export const mutations = {
     state.img = data;
   },
 
-  // update
-  setUpdateLoading(state, data) {
-    state.updateLoading = data;
-  },
-  setUpdateSuccessMsg(state, data) {
-    state.updateSuccessMsg = data;
-  },
-  setUpdateServerMsg(state, data) {
-    state.updateServerMsg = data;
-  },
-  setUpdateErrorMsg(state, data) {
-    state.updateErrorMsg = data;
-  },
-
   // register
   setRegisterSuccessMsg(state, data) {
     state.registerSuccessMsg = data;

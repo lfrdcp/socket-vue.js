@@ -16,24 +16,35 @@
       <v-container>
         <v-select :items="items" label="Seleccione una tienda" outlined />
 
-        <h3>Tienda 1</h3>
-        <SvgComponent :content="arbolsvg" />
-        <v-list two-line>
-          <ListItem :icon="icons.location" title="Dirección" />
-          <v-divider inset />
-          <v-row>
-            <v-col>
-              <ListItem title="Zempoala" subtitle="Calle" />
-              <ListItem title="30" subtitle="No. interior" />
-              <ListItem title="25" subtitle="No. exterior" />
-            </v-col>
-            <v-col>
-              <ListItem title="Flor" subtitle="Colonia" />
-              <ListItem title="Cuernavaca" subtitle="Ciudad" />
-              <ListItem title="Morelos" subtitle="Estado" />
-            </v-col>
-          </v-row>
-        </v-list>
+        <v-card>
+          <v-toolbar dark>
+            <v-toolbar-title>Tienda 1</v-toolbar-title>
+          </v-toolbar>
+          <SvgComponent :content="arbolsvg" />
+
+          <v-expansion-panels>
+            <v-expansion-panel>
+              <v-expansion-panel-header>
+                <ListItem :icon="icons.location" title="Dirección" />
+              </v-expansion-panel-header>
+              <v-expansion-panel-content>
+                <v-divider inset />
+                <v-row>
+                  <v-col>
+                    <ListItem title="Zempoala" subtitle="Calle" />
+                    <ListItem title="30" subtitle="No. interior" />
+                    <ListItem title="25" subtitle="No. exterior" />
+                  </v-col>
+                  <v-col>
+                    <ListItem title="Flor" subtitle="Colonia" />
+                    <ListItem title="Cuernavaca" subtitle="Ciudad" />
+                    <ListItem title="Morelos" subtitle="Estado" />
+                  </v-col>
+                </v-row>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-card>
       </v-container>
     </v-card-text>
     <v-card-actions>
@@ -61,7 +72,6 @@ import SvgComponent from '../../svg/SvgComponent';
 import ButtonCircular from '../../button/ButtonCircular';
 import ListItem from '../../listItem/ListItem';
 import ButtonAbsolute from '../../button/ButtonAbsolute';
-
 export default {
   name: 'StoreRead',
   components: {

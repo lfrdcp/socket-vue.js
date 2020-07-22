@@ -34,6 +34,7 @@
             />
             <v-text-field
               label="Correo "
+              v-model="user.email"
               name="login"
               :prepend-icon="icons.person"
               type="email"
@@ -41,21 +42,20 @@
               color="primary"
               required
               :rules="emailRules"
-              v-model="user.email"
             />
 
             <v-text-field
-              id="password"
               label="Contraseña"
-              name="password"
-              :prepend-icon="icons.password"
-              type="password"
-              outlined
-              autocomplete="on"
+              v-model="user.password"
               color="primary"
+              name="password"
+              outlined
               required
               :rules="passwordRules"
-              v-model="user.password"
+              :prepend-icon="icons.password"
+              :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? icons.eyeOn : icons.eyeOff"
+              @click:append="showPassword = !showPassword"
             />
           </v-form>
 
@@ -108,6 +108,7 @@ export default {
     loginErrorMsg: false,
 
     valid: true,
+    showPassword: false,
     passwordRules: [rules.minimumEight],
     emailRules: [rules.empty, rules.email],
     icons: icons,

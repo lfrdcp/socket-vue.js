@@ -66,24 +66,28 @@
               label="Contraseña"
               name="password"
               :prepend-icon="icons.password"
-              type="password"
               outlined
               color="primary"
               required
               :rules="passwordRules"
               v-model="user.password"
+              :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? icons.eyeOn : icons.eyeOff"
+              @click:append="showPassword = !showPassword"
             />
 
             <v-text-field
               label="Confirmar contraseña"
               name="password"
               :prepend-icon="icons.password"
-              type="password"
               outlined
               color="primary"
               required
               :rules="passwordRules.concat(passwordMatch)"
               v-model="user.confirmPassword"
+              :type="showConfirmPassword ? 'text' : 'password'"
+              :append-icon="showConfirmPassword ? icons.eyeOn : icons.eyeOff"
+              @click:append="showConfirmPassword = !showConfirmPassword"
             />
           </v-form>
           <Alert
@@ -147,6 +151,8 @@ export default {
     registerErrorMsg: false,
 
     valid: true,
+    showPassword: false,
+    showConfirmPassword: false,
     user: {
       name: '',
       lastName: '',

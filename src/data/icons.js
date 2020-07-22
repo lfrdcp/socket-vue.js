@@ -21,4 +21,6 @@ export const icons = {
   store: 'storefront',
   location: 'location_on',
   employee: 'folder_shared',
+  eyeOn: 'visibility',
+  eyeOff: 'visibility_off',
 };

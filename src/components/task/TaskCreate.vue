@@ -1,7 +1,7 @@
 <template>
   <v-card class="elevation-24" shaped>
-    <v-toolbar color="orange" dark>
-      <v-toolbar-title>Editar tarea</v-toolbar-title>
+    <v-toolbar color="primary" dark>
+      <v-toolbar-title>Crear tarea</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-icon>{{ icons.task }} </v-icon>
     </v-toolbar>
@@ -28,13 +28,12 @@
     </v-card-text>
     <v-card-actions>
       <v-btn
-        dark
         block
-        color="orange"
-        @click="update"
+        color="primary"
+        @click="create"
         type="submit"
         :disabled="!valid"
-        >Editar</v-btn
+        >Crear</v-btn
       >
     </v-card-actions>
   </v-card>
@@ -43,14 +42,14 @@
 import { icons } from '../../data/icons';
 
 export default {
-  name: 'TaskUpdate',
+  name: 'TaskCreate',
   data: () => ({
     valid: false,
     icons: icons,
   }),
 
   methods: {
-    update() {
+    create() {
       this.$store.dispatch('task/setUpCRUDButton', 'R');
     },
   },

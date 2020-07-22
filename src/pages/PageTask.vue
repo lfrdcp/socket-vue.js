@@ -11,7 +11,8 @@
     <v-row cols="12" sm="8" md="4">
       <v-col>
         <transition mode="out-in">
-          <TaskRead v-if="CRUDButton === 'R'" />
+          <TaskCreate v-if="CRUDButton === 'C'" />
+          <TaskRead v-else-if="CRUDButton === 'R'" />
           <TaskUpdate v-else-if="CRUDButton === 'U'" />
         </transition>
       </v-col>
@@ -35,6 +36,7 @@ import { mapState } from 'vuex';
 import Calendar from '../components/calendar/Calendar';
 import TaskRead from '../components/task/TaskRead';
 import TaskUpdate from '../components/task/TaskUpdate';
+import TaskCreate from '../components/task/TaskCreate';
 import { icons } from '../data/icons';
 
 export default {
@@ -44,6 +46,7 @@ export default {
     Calendar,
     TaskRead,
     TaskUpdate,
+    TaskCreate,
   },
   created() {
     setInterval(this.getNow, 1000);

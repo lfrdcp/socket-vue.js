@@ -23,4 +23,6 @@ export const icons = {
   employee: 'folder_shared',
   eyeOn: 'visibility',
   eyeOff: 'visibility_off',
+  title: 'title',
+  description: 'description',
 };

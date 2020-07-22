@@ -1,12 +1,10 @@
 <template>
   <v-card class="elevation-24" shaped>
-    <v-toolbar dark>
+    <v-toolbar color="orange" dark>
       <v-toolbar-title>Editar datos</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-icon>{{ icons.update }} </v-icon>
     </v-toolbar>
-
-    <v-card-title class="justify-center"></v-card-title>
 
     <v-card-text>
       <v-form v-model="valid">
@@ -147,8 +145,9 @@
 
     <v-card-actions>
       <v-btn
+        dark
         block
-        color="primary"
+        color="orange"
         @click="update"
         type="submit"
         :disabled="!valid"

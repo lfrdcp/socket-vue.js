@@ -11,7 +11,7 @@ export default {
 
   methods: {
     update() {
-      this.$store.dispatch('store/setUpCRUDButton', 'R');
+      this.$store.commit('store/setCRUDButton', 'R');
     },
   },
 };

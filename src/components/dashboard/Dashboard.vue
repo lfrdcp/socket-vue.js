@@ -4,7 +4,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" mensaje-tour="4" />
       <v-toolbar-title>Punto de venta boxcode</v-toolbar-title>
       <v-spacer></v-spacer>
-      <Notification />
+      <DialogNotifications v-bind:notifications="2" />
 
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
@@ -73,7 +73,7 @@
 import { mapState } from 'vuex';
 import ListItemSingle from './ListItemSingle';
 import ListItemGroup from './ListItemGroup';
-import Notification from '../notification/Notification';
+import DialogNotifications from '../dialog/DialogNotifications';
 import { icons } from '../../data/icons';
 
 import router from '../../router/index';
@@ -83,7 +83,7 @@ export default {
   components: {
     ListItemSingle,
     ListItemGroup,
-    Notification,
+    DialogNotifications,
   },
   created() {
     setInterval(() => {

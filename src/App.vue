@@ -1,9 +1,9 @@
 <template>
   <v-app id="app">
     <v-container class="fill-height" fluid>
-      <transition mode="out-in">
-        <router-view />
-      </transition>
+      <!-- <transition mode="out-in"> -->
+      <router-view />
+      <!-- </transition> -->
     </v-container>
     <Footer v-show="footer" />
   </v-app>

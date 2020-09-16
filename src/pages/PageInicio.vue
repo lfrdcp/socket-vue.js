@@ -3,9 +3,9 @@
     <v-container class="fill-height" fluid>
       <v-tour name="myTour" :steps="steps" :options="myOptions"></v-tour>
       <Dashboard />
-      <transition mode="out-in">
-        <router-view />
-      </transition>
+      <!-- <transition mode="out-in"> -->
+      <router-view />
+      <!-- </transition> -->
     </v-container>
   </v-content>
 </template>

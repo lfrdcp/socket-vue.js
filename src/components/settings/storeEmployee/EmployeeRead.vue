@@ -9,25 +9,39 @@
     <v-card-text>
       <EmployeeCreate />
       <v-list>
-        <v-row v-for="(item, i) in employees" :key="i">
-          <v-col>
-            <ListItem
-              :title="item.email"
-              subtitle="Correo"
-              :icon="icons.employee"
-            />
-          </v-col>
-          <v-col class="text-end">
-            <!-- <ButtonCircular color="orange" :icon="icons.update" link="" /> -->
-            <ButtonCircular
-              @click.native="employeeDelete"
-              tooltip="Eliminar"
-              color="red"
-              :icon="icons.delete"
-              link=""
-            />
-          </v-col>
-        </v-row>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">Empleado</th>
+                <th class="text-left">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, i) in employees" :key="i">
+                <td>
+                  <ListItem
+                    :title="item.email"
+                    subtitle="Correo"
+                    :icon="icons.employee"
+                  />
+                </td>
+                <td>
+                  <DialogConfirmClose
+                    color="red"
+                    title="¿Estas seguro de elimiar el empleado?"
+                    content="Una vez eliminada la tarea no tendra acceso"
+                    textButtonConfirm="Eliminar empleado"
+                    textButtonClose="Cancelar"
+                    :icon="icons.delete"
+                    :parentMethod="employeeDelete"
+                    tooltip="Eliminar empleado"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
       </v-list>
     </v-card-text>
   </v-card>
@@ -36,13 +50,13 @@
 <script>
 import { mapState } from 'vuex';
 import { icons } from '../../../data/icons';
-import ButtonCircular from '../../button/ButtonCircular';
+import DialogConfirmClose from '../../dialog/DialogConfirmClose';
 import ListItem from '../../listItem/ListItem';
 import EmployeeCreate from './EmployeeCreate';
 export default {
   name: 'EmployeeRead',
   components: {
-    ButtonCircular,
+    DialogConfirmClose,
     ListItem,
     EmployeeCreate,
   },

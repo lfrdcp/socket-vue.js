@@ -56,6 +56,7 @@
               :type="showPassword ? 'text' : 'password'"
               :append-icon="showPassword ? icons.eyeOn : icons.eyeOff"
               @click:append="showPassword = !showPassword"
+              @keyup.enter="valid ? login() : false"
             />
           </v-form>
 
@@ -72,8 +73,15 @@
             >Iniciar sesion
           </v-btn>
         </v-card-actions>
-        <v-card-actions>
-          <v-btn to="register" color="primary" block>Registarse</v-btn>
+        <v-card-actions
+          ><v-col cols="6">
+            <v-btn text to="register" color="primary" block>
+              ¿Olvidaste tu contraseña?
+            </v-btn>
+          </v-col>
+          <v-col cols="6">
+            <v-btn text to="register" color="primary" block>registrarse</v-btn>
+          </v-col>
         </v-card-actions>
       </v-card>
     </v-col>

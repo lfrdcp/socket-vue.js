@@ -38,7 +38,7 @@ export default {
 }
 
 #app {
-  background: linear-gradient(#1e96fc, #ffffff);
+  background-image: linear-gradient(to top, #ffffff, #e1e1fd, #1e96fc);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }

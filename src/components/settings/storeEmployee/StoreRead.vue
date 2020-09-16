@@ -55,11 +55,15 @@
         :icon="icons.update"
         link=""
       />
-      <ButtonCircular
-        tooltip="Eliminar"
+      <DialogConfirmClose
         color="red"
+        title="¿Estas seguro de elimiar la tienda?"
+        content="Una vez eliminada la tienda, no se podra recuperar"
+        textButtonConfirm="Eliminar tienda"
+        textButtonClose="Cancelar"
         :icon="icons.delete"
-        link=""
+        :parentMethod="exampleAlert"
+        tooltip="Eliminar tienda"
       />
     </v-card-actions>
   </v-card>
@@ -72,6 +76,7 @@ import SvgComponent from '../../svg/SvgComponent';
 import ButtonCircular from '../../button/ButtonCircular';
 import ListItem from '../../listItem/ListItem';
 import ButtonAbsolute from '../../button/ButtonAbsolute';
+import DialogConfirmClose from '../../dialog/DialogConfirmClose';
 export default {
   name: 'StoreRead',
   components: {
@@ -79,6 +84,7 @@ export default {
     ButtonCircular,
     ListItem,
     ButtonAbsolute,
+    DialogConfirmClose,
   },
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],
@@ -87,11 +93,14 @@ export default {
   }),
 
   methods: {
+    exampleAlert() {
+      alert('Eliminar tienda');
+    },
     update() {
-      this.$store.dispatch('store/setUpCRUDButton', 'U');
+      this.$store.commit('store/setCRUDButton', 'U');
     },
     create() {
-      this.$store.dispatch('store/setUpCRUDButton', 'C');
+      this.$store.commit('store/setCRUDButton', 'C');
     },
   },
 };

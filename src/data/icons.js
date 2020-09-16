@@ -5,7 +5,8 @@ export const icons = {
   key: 'vpn_key',
   email: 'email',
   notification: 'notifications_active',
-  task: 'note',
+  task: 'list_alt',
+
   create: 'add',
   update: 'create',
   delete: 'delete_outline',

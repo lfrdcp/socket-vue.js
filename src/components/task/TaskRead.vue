@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
       <v-icon>{{ icons.task }} </v-icon>
       <ButtonAbsolute
-        @click.native="create()"
+        @click.native="$store.commit('task/setCRUDButton', 'C')"
         tooltip="Crear"
         color="primary"
         :icon="icons.create"
@@ -41,11 +41,6 @@ export default {
   components: {
     TimeLine,
     ButtonAbsolute,
-  },
-  methods: {
-    create() {
-      this.$store.dispatch('task/setUpCRUDButton', 'C');
-    },
   },
 };
 </script>

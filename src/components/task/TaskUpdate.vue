@@ -1,9 +1,9 @@
 <template>
   <v-card class="elevation-24" shaped>
-    <v-toolbar color="orange" dark>
+    <v-toolbar dark>
       <v-toolbar-title>Editar tarea</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-icon>{{ icons.task }} </v-icon>
+      <v-icon color="orange">{{ icons.task }} </v-icon>
     </v-toolbar>
 
     <v-card-text>
@@ -16,26 +16,32 @@
           color="primary"
           required
         />
-        <v-text-field
+        <v-textarea
           label="Descripción"
           name="descripcion"
-          :prepend-icon="icons.description"
           outlined
           color="primary"
           required
+          rows="3"
+          auto-grow
+          :prepend-icon="icons.description"
         />
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-btn
-        dark
-        block
-        color="orange"
-        @click="update"
-        type="submit"
-        :disabled="!valid"
-        >Editar</v-btn
-      >
+      <v-row justify="center">
+        <v-col cols="12" sm="4" md="4">
+          <v-btn
+            dark
+            block
+            color="orange"
+            @click="$store.commit('task/setCRUDButton', 'R')"
+            type="submit"
+            :disabled="!valid"
+            >Editar</v-btn
+          >
+        </v-col>
+      </v-row>
     </v-card-actions>
   </v-card>
 </template>
@@ -48,11 +54,5 @@ export default {
     valid: false,
     icons: icons,
   }),
-
-  methods: {
-    update() {
-      this.$store.dispatch('task/setUpCRUDButton', 'R');
-    },
-  },
 };
 </script>

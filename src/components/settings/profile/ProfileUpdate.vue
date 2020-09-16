@@ -1,9 +1,9 @@
 <template>
   <v-card class="elevation-24" shaped>
-    <v-toolbar color="orange" dark>
+    <v-toolbar dark>
       <v-toolbar-title>Editar datos</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-icon>{{ icons.update }} </v-icon>
+      <v-icon color="orange">{{ icons.update }} </v-icon>
     </v-toolbar>
 
     <v-card-text>
@@ -144,15 +144,19 @@
     </v-card-text>
 
     <v-card-actions>
-      <v-btn
-        dark
-        block
-        color="orange"
-        @click="update"
-        type="submit"
-        :disabled="!valid"
-        >Editar</v-btn
-      >
+      <v-row justify="center">
+        <v-col cols="12" sm="4" md="4">
+          <v-btn
+            dark
+            block
+            color="orange"
+            @click="update"
+            type="submit"
+            :disabled="!valid"
+            >Editar</v-btn
+          >
+        </v-col>
+      </v-row>
     </v-card-actions>
   </v-card>
 </template>

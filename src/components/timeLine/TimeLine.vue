@@ -13,17 +13,22 @@
 
       <v-card-actions>
         <ButtonCircular
-          @click.native="update()"
+          @click.native="$store.commit('task/setCRUDButton', 'U')"
           tooltip="Editar"
           color="orange"
           :icon="icons.update"
           link=""
         />
-        <ButtonCircular
-          tooltip="Eliminar"
+
+        <DialogConfirmClose
           color="red"
+          title="¿Estas seguro de elimiar la tarea?"
+          content="Una vez eliminada la tarea, no se podra recuperar"
+          textButtonConfirm="Eliminar tarea"
+          textButtonClose="Cancelar"
           :icon="icons.delete"
-          link=""
+          :parentMethod="ejemploAlerta"
+          tooltip="Eliminar tarea"
         />
       </v-card-actions>
     </v-card>
@@ -31,19 +36,21 @@
 </template>
 <script>
 import ButtonCircular from '../button/ButtonCircular';
+import DialogConfirmClose from '../dialog/DialogConfirmClose';
 import { icons } from '../../data/icons';
 export default {
   name: 'TimeLine',
   props: ['id', 'titulo', 'contenido', 'color', 'img', 'nombreImg'],
   components: {
     ButtonCircular,
+    DialogConfirmClose,
   },
   data: () => ({
     icons: icons,
   }),
   methods: {
-    update() {
-      this.$store.dispatch('task/setUpCRUDButton', 'U');
+    ejemploAlerta() {
+      alert('lo hiicste');
     },
   },
 };

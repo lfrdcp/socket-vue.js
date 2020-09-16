@@ -90,13 +90,14 @@ export default {
   methods: {
     async employeeCreate() {
       this.createLoading = true;
+
       try {
         let response = await axios.post(
           URL + 'api/user/employee',
           this.employee
         );
         if (response.data.status === '') {
-          this.$store.dispatch('employee/addEmployee', this.employee);
+          this.$store.commit('employee/setAddEmployee', this.employee);
           this.createSuccessMsg = successMsgEmployee.created; // CÓDIGO CORRECTO ✅
           setTimeout(() => (this.createSuccessMsg = false), 10000);
         } else if (response.data.status === '1F4usu0') {

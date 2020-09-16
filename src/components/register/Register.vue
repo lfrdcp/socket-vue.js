@@ -50,7 +50,7 @@
               v-model="user.email"
             />
 
-            <v-text-field
+            <!-- <v-text-field
               label="Código para caja"
               name="code"
               :prepend-icon="icons.key"
@@ -60,9 +60,9 @@
               required
               :rules="onlyFourCharacters"
               v-model="user.verifierCode"
-            />
+            /> -->
 
-            <v-text-field
+            <!-- <v-text-field
               label="Contraseña"
               name="password"
               :prepend-icon="icons.password"
@@ -88,7 +88,7 @@
               :type="showConfirmPassword ? 'text' : 'password'"
               :append-icon="showConfirmPassword ? icons.eyeOn : icons.eyeOff"
               @click:append="showConfirmPassword = !showConfirmPassword"
-            />
+            /> -->
           </v-form>
           <Alert
             color="error"
@@ -116,7 +116,9 @@
           </v-btn>
         </v-card-actions>
         <v-card-actions>
-          <v-btn to="login" color="primary" block>Iniciar sesion</v-btn>
+          <v-btn text to="login" color="primary" block>
+            ¿YA TIENES UNA CUENTA? ENTONCES Inicia sesion
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>

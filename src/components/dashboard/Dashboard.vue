@@ -1,10 +1,19 @@
 <template>
-  <v-card class="elevation-24">
+  <v-card class="elevation-24" @keyup.esc="logout()">
     <v-app-bar app clipped-left dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" mensaje-tour="4" />
       <v-toolbar-title>Punto de venta boxcode</v-toolbar-title>
       <v-spacer></v-spacer>
       <Notification />
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon @click="logout()" v-bind="attrs" v-on="on">
+            <v-icon>{{ icons.power }}</v-icon>
+          </v-btn>
+        </template>
+        <span>Cerrar sesion</span>
+      </v-tooltip>
     </v-app-bar>
     <v-navigation-drawer
       dark
@@ -56,16 +65,6 @@
           />
         </v-list-group>
       </v-list>
-
-      <template v-slot:append>
-        <div class="pa-2" @click="logout">
-          <v-btn block dark mensaje-tour="3">
-            <v-icon>{{ icons.power }} </v-icon>
-            <v-spacer></v-spacer>
-            Cerrar sesion
-          </v-btn>
-        </div>
-      </template>
     </v-navigation-drawer>
   </v-card>
 </template>

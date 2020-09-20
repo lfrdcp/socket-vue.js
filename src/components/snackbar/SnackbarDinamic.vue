@@ -12,7 +12,7 @@
       </p>
       <v-progress-linear
         :value="counter"
-        height="8"
+        height="20"
         color="blue-grey lighten-5"
       ></v-progress-linear>
     </v-snackbar>

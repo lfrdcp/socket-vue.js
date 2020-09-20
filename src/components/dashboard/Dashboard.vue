@@ -75,8 +75,8 @@ import ListItemSingle from './ListItemSingle';
 import ListItemGroup from './ListItemGroup';
 import DialogNotifications from '../dialog/DialogNotifications';
 import { icons } from '../../data/icons';
-
 import router from '../../router/index';
+
 export default {
   name: 'Dashboard',
   data: () => ({ icons: icons, drawer: null, time: '', date: '' }),

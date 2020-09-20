@@ -47,7 +47,6 @@
 </template>
 <script>
 import { icons } from '../../data/icons';
-
 export default {
   name: 'TaskCreate',
   data: () => ({

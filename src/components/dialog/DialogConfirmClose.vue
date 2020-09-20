@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" width="500">
+    <v-dialog v-model="dialog" width="18%">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" dark fab small class="elevation-24" :color="color">
           <!-- AQUI INICIA EL TOOLTIP, TIENE LOS MISMOS ACTIVATOR QUE EL DIALOG, HAY QUE TENER CUIDADO -->

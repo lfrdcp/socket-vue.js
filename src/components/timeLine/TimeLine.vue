@@ -38,9 +38,21 @@
 import ButtonCircular from '../button/ButtonCircular';
 import DialogConfirmClose from '../dialog/DialogConfirmClose';
 import { icons } from '../../data/icons';
+
 export default {
   name: 'TimeLine',
-  props: ['id', 'titulo', 'contenido', 'color', 'img', 'nombreImg'],
+
+  props: {
+    id: {
+      type: Number,
+      required: true,
+      validator: (val) => !isNaN(val),
+    },
+    titulo: { type: String, required: true },
+    contenido: { type: String, required: true },
+    color: { type: String, required: true },
+  },
+
   components: {
     ButtonCircular,
     DialogConfirmClose,

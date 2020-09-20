@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container class="fill-height" fluid>
       <v-tour name="myTour" :steps="steps" :options="myOptions"></v-tour>
       <Dashboard />
@@ -7,7 +7,7 @@
       <router-view />
       <!-- </transition> -->
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

@@ -54,8 +54,10 @@
 import { mapState } from 'vuex';
 import { icons } from '../../../data/icons';
 export default {
-  name: 'PersonalShow',
-  data: () => ({ icons: icons }),
+  name: 'ProfileRead',
+  data: () => ({
+    icons: icons,
+  }),
   computed: {
     ...mapState('user', ['user']),
   },

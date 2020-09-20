@@ -20,30 +20,25 @@
           <v-toolbar dark>
             <v-toolbar-title>Tienda 1</v-toolbar-title>
           </v-toolbar>
-          <SvgComponent :content="arbolsvg" />
+          <!-- <a href="https://www.freepik.es/vectores/fondo"
+            >Vector de Fondo creado por freepik - www.freepik.es</a
+          > -->
 
-          <v-expansion-panels>
-            <v-expansion-panel>
-              <v-expansion-panel-header>
-                <ListItem :icon="icons.location" title="Dirección" />
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <v-divider inset />
-                <v-row>
-                  <v-col>
-                    <ListItem title="Zempoala" subtitle="Calle" />
-                    <ListItem title="30" subtitle="No. interior" />
-                    <ListItem title="25" subtitle="No. exterior" />
-                  </v-col>
-                  <v-col>
-                    <ListItem title="Flor" subtitle="Colonia" />
-                    <ListItem title="Cuernavaca" subtitle="Ciudad" />
-                    <ListItem title="Morelos" subtitle="Estado" />
-                  </v-col>
-                </v-row>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+          <ListItem :icon="icons.location" title="Dirección" />
+
+          <v-divider inset />
+          <v-row>
+            <v-col>
+              <ListItem title="Zempoala" subtitle="Calle" />
+              <ListItem title="30" subtitle="No. interior" />
+              <ListItem title="25" subtitle="No. exterior" />
+            </v-col>
+            <v-col>
+              <ListItem title="Flor" subtitle="Colonia" />
+              <ListItem title="Cuernavaca" subtitle="Ciudad" />
+              <ListItem title="Morelos" subtitle="Estado" />
+            </v-col>
+          </v-row>
         </v-card>
       </v-container>
     </v-card-text>
@@ -70,17 +65,15 @@
 </template>
 
 <script>
-import { arbol } from '../../../data/svg';
 import { icons } from '../../../data/icons';
-import SvgComponent from '../../svg/SvgComponent';
 import ButtonCircular from '../../button/ButtonCircular';
 import ListItem from '../../listItem/ListItem';
 import ButtonAbsolute from '../../button/ButtonAbsolute';
 import DialogConfirmClose from '../../dialog/DialogConfirmClose';
+
 export default {
   name: 'StoreRead',
   components: {
-    SvgComponent,
     ButtonCircular,
     ListItem,
     ButtonAbsolute,
@@ -88,7 +81,7 @@ export default {
   },
   data: () => ({
     items: ['Tienda 1', 'Tienda 2', 'Tienda 3', 'Tienda 4'],
-    arbolsvg: arbol,
+
     icons: icons,
   }),
 

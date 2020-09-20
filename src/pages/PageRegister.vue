@@ -1,9 +1,9 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container>
       <Register />
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 <script>
 import Register from '../components/register/Register';

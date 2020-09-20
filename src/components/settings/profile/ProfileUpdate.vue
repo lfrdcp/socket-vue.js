@@ -167,7 +167,6 @@ import DialogImageProfile from '../../dialog/DialogImageProfile';
 import ProgressLinear from '../../progressLinear/ProgressLinear';
 import { rules } from '../../../utils/components/rules';
 import { icons } from '../../../data/icons';
-import { mapState } from 'vuex';
 
 import axios from 'axios';
 import { URL } from '../../../data/url';
@@ -224,7 +223,6 @@ export default {
         'La contraseña no coincide'
       );
     },
-    ...mapState('user', ['user']),
   },
 
   methods: {

@@ -29,3 +29,9 @@ export const errorMsgEmployee = {
   createUn: msgUn + '(Crear empleado)',
   createServer: msgServer + '(Crear empleado)',
 };
+
+export const errorMsgTasks = {
+  readTask500: msg500 + '(Mostrar tareas)',
+  readTask404: msg404 + '(Mostrar tareas)',
+  readTaskUn: msgUn + '(Mostrar tareas)',
+};

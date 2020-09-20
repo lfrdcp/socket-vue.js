@@ -95,7 +95,6 @@ import { rules } from '../../utils/components/rules';
 import { mapState } from 'vuex';
 import LoginSVG from '../../assets/img/Login.svg';
 import { icons } from '../../data/icons';
-
 import axios from 'axios';
 import router from '../../router/index';
 import { URL } from '../../data/url';

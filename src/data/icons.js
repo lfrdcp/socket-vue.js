@@ -6,7 +6,6 @@ export const icons = {
   email: 'email',
   notification: 'notifications_active',
   task: 'list_alt',
-
   create: 'add',
   update: 'create',
   delete: 'delete_outline',

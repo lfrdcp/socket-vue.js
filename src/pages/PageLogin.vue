@@ -1,9 +1,9 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container>
       <Login />
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

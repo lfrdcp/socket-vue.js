@@ -18,6 +18,7 @@
     </v-toolbar>
 
     <v-card-text>
+      <h1>{{ mensaje }}</h1>
       <v-timeline :dense="$vuetify.breakpoint.smAndDown">
         <TimeLine
           v-for="task in tasks"
@@ -54,6 +55,8 @@ import SnackbarDinamic from '../snackbar/SnackbarDinamic';
 import { errorMsgTasks } from '../../data/errors';
 import { mixinSnackbar } from '../../mixins/mixins.js';
 
+import Echo from 'laravel-echo';
+
 export default {
   name: 'TaskRead',
   mixins: [mixinSnackbar],
@@ -64,6 +67,7 @@ export default {
     ProgressLinear,
   },
   data: () => ({
+    Echo: Echo,
     icons: icons,
     tasks: [],
     snackbarIcon: '',
@@ -72,16 +76,38 @@ export default {
     snackbarContent: '',
     timerCount: 100,
     loginLoading: '',
+    mensaje: [],
   }),
+
   mounted() {
     this.setTasks();
+
+    window.Echo = new Echo({
+      broadcaster: 'pusher',
+      key: '085553fa518ea5fefd0e',
+      wsHost: '192.168.0.103',
+      wsPort: 6001,
+      disableStats: true,
+      forceTLS: false,
+    });
+
+    window.Echo.channel('DemoChannel').listen('WebsocketDemoEvent', (e) => {
+      this.mensaje.push(e.somedata);
+      console.log(e);
+    });
+
+    // this.echo.connector.pusher.connection.bind('connected', (event) =>
+    //   console.log(event)
+    // );
+
+    // console.log('ya paso por el codigo de canal');
   },
   methods: {
     async setTasks() {
       try {
         this.loginLoading = true;
         let response = await axios.post(URL + 'api/user/tasks', {
-          nameStoreDataBase: 'tienda1',
+          nameStoreDataBase: 'tienda1_dev',
         });
         this.tasks = response.data.tasks;
       } catch (error) {
